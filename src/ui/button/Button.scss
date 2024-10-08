@@ -1,0 +1,58 @@
+@import '../../styles//variables.scss';
+@import '../../styles/mixins.scss';
+
+.button {
+    @include text-sizes($font-size-s-1, $line-height-1, $letter-spacing-1, 500);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 16px 24px;
+    font-family: inherit;
+    color: $color-white-1;
+    background-color: $color-blue-1;
+    border-radius: $border-radius-1;
+
+    &:hover {
+        background-color: $color-blue-9;
+    }
+
+    &:active {
+        background-color: $color-blue-2;
+    }
+
+    &:disabled {
+        background-color: $color-gray-1;
+        cursor: not-allowed;
+    }
+
+    &::before {
+        width: 18px;
+        height: 18px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    &.add,
+    &.search {
+        @include text-sizes($font-size-s-2, $line-height-4, $letter-spacing-7);
+    }
+
+    &.add {
+        gap: 8px;
+        padding: 10px 24px 10px 16px;
+
+        &::before {
+            content: url('../../../public/assets/icons/sprite-icons-small.svg#plus');
+        }
+    }
+
+    &.search {
+        gap: 10px;
+        padding-right: 40px;
+
+        &::before {
+            content: url('../../../../public/assets/icons/sprite-icons-small.svg#search');
+        }
+    }
+}

@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.privacy-policy {
+    @include text-sizes($font-size-s-1, $line-height-4, $letter-spacing-4, 400 );
+    color: $color-black-3;
+    display: flex;
+    align-items: first baseline;
+    gap: 8px;
+
+    &__checkbox {
+        transform: scale(1.3);
+    }
+
+    &__link {
+        color: $color-blue-16;
+    }
+}

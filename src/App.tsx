@@ -1,10 +1,13 @@
-
+import Header from './components/header/Header';
+import MainPage from './pages/main-page/MainPage';
 function App() {
-
     return (
-        <div>
+        <>
+            <Header />
+            <MainPage />
+            footer
             test
-        </div>
+        </>
     )
 }
 

@@ -1,0 +1,46 @@
+@import './styles/variables.scss';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: $main-font;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+ul,
+menu {
+    list-style: none;
+}
+
+.app-container {
+    max-width: 1224px;
+    min-width: fit-content;
+    margin: 0 auto;
+}

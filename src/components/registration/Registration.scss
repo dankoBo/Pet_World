@@ -1,0 +1,39 @@
+@import '../../styles//variables.scss';
+@import '../../styles/mixins.scss';
+
+.form-wrapper {
+    width: 100%;
+    background-color: $color-gray-14;
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: $width-form;
+    margin: 0 auto;
+    padding: 48px 104px;
+    border: $border-1;
+    border-radius: $border-radius-1;
+
+    &__title-wrapper {
+        text-align: center
+    }
+
+    &__title {
+        @include text-sizes($font-size-l-1, $line-height-2, $letter-spacing-2, 400);
+    }
+
+    &__subtitle {
+        @include text-sizes($font-size-s-3, $line-height-1, $letter-spacing-2, 400);
+    }
+}
+
+.login-alternative {
+    text-align: center;
+    @include text-sizes($font-size-s-2, $line-height-4, $letter-spacing-4, 400);
+
+    &__link {
+        color: $color-blue-16;
+    }
+}
