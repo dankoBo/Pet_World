@@ -17,13 +17,17 @@ body {
 #root {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    // height: 100vh;
 }
 
 img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+a {
+    text-decoration: none;
 }
 
 button {
@@ -42,5 +46,11 @@ menu {
 .app-container {
     max-width: 1224px;
     min-width: fit-content;
+    margin: 0 auto;
+}
+
+.main {
+    width: $width-app;
+    flex: 1;
     margin: 0 auto;
 }

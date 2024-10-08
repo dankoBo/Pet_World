@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.pet-categories-wrapper {
+    width: 1044px;
+    padding: 144px 24px 0 0;
+    background: url('src/assets/backgrounds/main-page-pet-categories.png') 108px 0
+        no-repeat;
+}
+
+.pet-categories {
+    position: relative;
+    display: flex;
+    gap: 64px;
+    width: 1020px;
+    height: 212px;
+    padding: 48px 48px 48px 108px;
+    border-radius: 0 20px 20px 0;
+    background: linear-gradient(270deg, $color-blue-11 0%, $color-blue-12 100%);
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -24px;
+        right: -24px;
+        z-index: -1;
+        display: block;
+        width: 224px;
+        height: 224px;
+        border-radius: $border-radius-4;
+        background-color: $color-purple-1-a-7;
+    }
+}
+
+.pet-category {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    width: 120px;
+    height: 116px;
+    color: $color-white-1;
+
+    &__amount {
+        @include text-sizes($font-size-l-2, $line-height-6, $letter-spacing-6);
+    }
+
+    &__name {
+        @include text-sizes($font-size-m-2, $line-height-2);
+    }
+}

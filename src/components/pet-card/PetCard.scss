@@ -1,0 +1,76 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.pet-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 288px;
+    border: $border-1;
+    border-radius: $border-radius-3;
+    box-shadow:
+        1px 2px 5px $color-gray-9-a-1,
+        4px 7px 9px $color-gray-9-a-09,
+        10px 17px 12px $color-gray-9-a-05,
+        17px 30px 14px $color-gray-9-a-01;
+    overflow: hidden;
+
+    &__photo {
+        width: 288px;
+        height: 208px;
+        border-bottom: unset;
+        object-fit: cover;
+        border-right: $border-1;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow:
+            1px 4px 8px $color-gray-9-a-1,
+            6px 10px 14px $color-gray-9-a-09,
+            12px 20px 20px $color-gray-9-a-05,
+            20px 35px 25px $color-gray-9-a-01;
+        border-color: $color-blue-7;
+        transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        cursor: pointer;
+    }
+}
+
+.card-description {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 16px;
+
+    &__title {
+        height: 48px;
+        letter-spacing: $letter-spacing-2;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__item {
+        @include text-sizes($font-size-s-2, $line-height-4, $letter-spacing-4, 400);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $color-black-1;
+    }
+
+    &__icon {
+        width: 24px;
+        height: 24px;
+        color: $color-blue-6;
+    }
+}
+
+.price {
+    @include text-sizes($font-size-m-1, $line-height-5, normal, 500);
+    text-align: right;
+    padding: 0 16px;
+    margin-top: 8px;
+}

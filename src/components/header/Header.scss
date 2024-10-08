@@ -10,15 +10,12 @@
     min-width: fit-content;
     background-color: $color-white-1;
     border-bottom: 1px solid $color-gray-2;
-    border: 1px solid red;
 }
 
 .header {
     display: flex;
-    align-items: center;
     font-size: $font-size-s-3;
     color: $color-black-4;
-    border: 1px solid blue;
 }
 
 .nav-header {

@@ -1,8 +1,52 @@
-@import '../../styles//variables.scss';
-
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .main-page-wrapper {
     width: $width-app;
-    height: 1000px;
-    margin: 0 auto;
+    background: 
+        url('/src/assets/backgrounds/main-page-main-image.png') 572px -94px /
+            auto no-repeat,
+        url('src/assets/backgrounds/main-page-curved-arrow.svg') 0 492px / 224px
+            74px no-repeat,
+        url('src/assets/backgrounds/main-page-double-bubbles.svg') 12px 1084px /
+            84px 164px no-repeat,
+        url('src/assets/backgrounds/main-page-triple-bubbles.svg') right 0 bottom -32px /
+            168px 120px no-repeat;
+}
+
+.main-page {
+    &__pet-categories {
+        position: relative;
+        left: -108px;
+    }
+
+    .global-header {
+        display: flex;
+        flex-direction: column;
+        gap: 44px;
+        width: 664px;
+        padding: 148px 0 168px;
+    }
+
+    &__main-header {
+        @include text-sizes($font-size-l-3, $line-height-7, $letter-spacing-2, 700);
+    }
+
+}
+
+.newest-ads-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 80px 0 120px;
+
+    &__header {
+        @include text-sizes($font-size-l-4, $line-height-8, $letter-spacing-2);
+        text-align: center;
+    }
+
+    &__pet-cards {
+        display: flex;
+        gap: 24px;
+    }
 }

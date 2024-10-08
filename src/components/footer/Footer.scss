@@ -1,0 +1,56 @@
+@import '../../styles/variables.scss';
+
+.main-footer-wrapper {
+    min-width: fit-content;
+    padding: 32px 108px 16px;
+    background-color: $color-black-2;
+}
+
+.main-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+
+    & .main-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    & .link-footer {
+        color: $color-blue-4;
+
+        &:hover {
+            color: $color-blue-5;
+        }
+
+        &:active {
+            color: $color-blue-6;
+        }
+    }
+}
+
+.address {
+    letter-spacing: $letter-spacing-2;
+    font-style: normal;
+
+    & .header {
+        color: $color-white-1;
+        margin-bottom: 8px;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 700;
+    }
+
+    & .link-footer {
+        font-size: 14px;
+        line-height: 24px;
+    }
+}
+
+.legal-info {
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: 400;
+    text-align: center;
+    color: $color-gray-4;
+}
