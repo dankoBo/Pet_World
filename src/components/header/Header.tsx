@@ -37,10 +37,7 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        className="nav-header__link-profile"
-                                        href="#"
-                                    >
+                                    <Link className="nav-header__link-profile" to="/login">
                                         <div className="nav-header__avatar-wrapper">
                                             <img
                                                 src="/assets/icons/sprite-icons-small.svg#avatar-placeholder"
@@ -50,7 +47,7 @@ const Header = () => {
                                             />
                                         </div>
                                         Акаунт
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>

@@ -1,8 +1,9 @@
 import Header from './components/header/Header';
 import MainPage from './pages/main-page/MainPage';
-import Registration from './components/registration/Registration'
+import RegistrationPage from './pages/registration-page/RegistrationPage';
 import { Routes, Route } from 'react-router-dom';
-import Footer from './components/footer/Footer'
+import Footer from './components/footer/Footer';
+import LoginPage from './pages/login-page/LoginPage';
 
 function App() {
     return (
@@ -11,12 +12,13 @@ function App() {
             <main className="main">
                 <Routes>
                     <Route path="/" element={<MainPage />} />
-                    <Route path="/registration" element={<Registration />} />
+                    <Route path="/registration" element={<RegistrationPage />} />
+                    <Route path="/login" element={<LoginPage />} />
                 </Routes>
             </main>
             <Footer />
         </>
-    )
+    );
 }
 
-export default App
+export default App;

@@ -7,7 +7,7 @@ import { MdVisibilityOff } from 'react-icons/md';
 import IconButton from '@mui/material/IconButton';
 import Button from '../../ui/button/Button';
 import { useFormik } from 'formik';
-import { registrationSchema } from '../../validation/registrationValidation'
+import { registrationSchema } from '../../validation/registrationValidation';
 
 
 const RegistrationForm = () => {
