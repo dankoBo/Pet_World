@@ -23,7 +23,11 @@ const PET_CATEGORIES = [
     },
 ];
 
-export default function PetCategories({ className }) {
+type PetCategoriesProps = {
+    className?: string;
+}
+
+const PetCategories: React.FC<PetCategoriesProps> = ({ className }) => {
     const wrapperClass = 'pet-categories-wrapper ' + (className ?? '');
 
     return (
@@ -38,4 +42,6 @@ export default function PetCategories({ className }) {
             </ul>
         </div>
     );
-}
+};
+
+export default PetCategories;

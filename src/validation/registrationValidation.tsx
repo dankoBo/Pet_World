@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+const phoneRegex = /^\+38 \(0\d{2}\) \d{3}-\d{2}-\d{2}$/;
+
 export const registrationSchema = Yup.object().shape({
     firstName: Yup.string()
         .min(2, "Ім'я занадто коротке")
@@ -17,6 +19,9 @@ export const registrationSchema = Yup.object().shape({
     email: Yup.string()
         .email('Некоректна електронна пошта')
         .required("Це поле є обов'язковим"),
+    phone: Yup.string()
+        .matches(phoneRegex, 'Номер телефону має бути у форматі +38 (0XX) XXX-XX-XX')
+        .required('Це поле є обов\'язковим'),
     password: Yup.string()
         .min(8, 'Пароль повинен містити щонайменше 8 символів')
         .required("Це поле є обов'язковим"),

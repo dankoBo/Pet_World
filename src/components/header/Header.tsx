@@ -30,14 +30,14 @@ const Header = () => {
                         <li>
                             <ul className="nav-header__side-links">
                                 <li>
-                                    <Link to="/registration">
+                                    <Link to="/add-pet">
                                         <Button className="add">
                                             Додати оголошення
                                         </Button>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="nav-header__link-profile" to="/login">
+                                    <Link className="nav-header__link-profile" to="/user-profile">
                                         <div className="nav-header__avatar-wrapper">
                                             <img
                                                 src="/assets/icons/sprite-icons-small.svg#avatar-placeholder"
