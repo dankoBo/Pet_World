@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+  
+.step {
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(236, 222, 255);;
+    color: #333;
+
+    &.active {
+        background-color: rgb(159, 90, 255);;
+        color: white;
+    }
+
+    &.completed {
+        background-color: rgb(159, 90, 255);;
+        color: white;
+    }
+}
+
+.add-pet-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-age-control {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    &__container {
+        width: 184px;
+    }
+}
+
+.form-label {
+    @include text-sizes($font-size-s-1, $line-height-1, $letter-spacing-2, 400);
+    color: $color-black-3;
+}
+
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -55,4 +55,19 @@
             content: url('../../../../public/assets/icons/sprite-icons-small.svg#search');
         }
     }
+
+    &.forward {
+        padding: 10px 24px;
+    }
+
+    &.prev {
+        padding: 10px 24px;
+        background-color: $color-white-1;
+        border: $border-2;
+        color: $color-black-3;
+    }
+
+    &.publish {
+        padding: 10px 24px;
+    }
 }

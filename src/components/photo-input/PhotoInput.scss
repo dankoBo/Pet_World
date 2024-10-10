@@ -1,0 +1,32 @@
+.container {
+    border: 2px solid #d1d5db;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropZone {
+    padding: 10px;
+    height: 100%;
+    border: 2px dashed #d1d5db;
+    color: #9ca3af;
+    font-size: 14px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    min-height: fit-content;
+}
+
+.uploadedImage {
+    width: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+    align-self: start;
+}
+
+.file-input {
+    display: none;
+}
