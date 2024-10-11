@@ -8,9 +8,13 @@ import { MdVisibilityOff } from 'react-icons/md';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../validation/loginValidation';
 import Button from '../../ui/button/Button';
+import { auth } from '../../firebase'
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -18,8 +22,15 @@ const LoginForm = () => {
             password: '',
         },
         validationSchema: loginSchema,
-        onSubmit: (values) => {
-            console.log(JSON.stringify(values, null, 2));
+        onSubmit: async (values, { setSubmitting }) => {
+            try {
+                await signInWithEmailAndPassword(auth, values.email, values.password);
+                navigate('/');
+            } catch (error) {
+                console.error('Помилка при вході:', error);
+            } finally {
+                setSubmitting(false);
+            }
         },
     });
 
@@ -28,7 +39,7 @@ const LoginForm = () => {
     };
 
     return (
-        <form className="registration-form">
+        <form onSubmit={formik.handleSubmit} className="registration-form">
             <TextField
                 type="email"
                 name="email"
@@ -71,6 +82,7 @@ const LoginForm = () => {
             <Button 
                 type="submit" 
                 className="button"
+                disabled={formik.isSubmitting || !formik.isValid}
             >
                 Увійти
             </Button>

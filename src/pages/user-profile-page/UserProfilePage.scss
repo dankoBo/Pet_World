@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .user-profile-wrapper {
-
+    padding: 0 0 112px;
 }
 
 .user-profile {
@@ -33,5 +33,27 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+    &__manage {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+.user-pets {
+
+    &__name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 48px 0 17px;
+        margin-bottom: 37px;
+        border-bottom: 2px solid rgba(199, 176, 231, 0.47);
+    }
+
+    &__cards {
+        display: flex;
+        gap: 24px;
     }
 }

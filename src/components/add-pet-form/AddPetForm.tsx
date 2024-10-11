@@ -10,6 +10,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db } from '../../firebase';
 import { addPetSchema } from '../../validation/addPetValidation';
+import { useNavigate } from 'react-router-dom';
 
 const uploadImageToStorage = async (
     file: File | null
@@ -32,6 +33,7 @@ const uploadImageToStorage = async (
 const AddPetForm = () => {
     const [step, setStep] = useState(0);
     const [imageFile, setImageFile] = useState<File | null>(null);
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -40,7 +42,7 @@ const AddPetForm = () => {
             price: '',
             free: false,
             location: '',
-            animalBreed: '',
+            petOrigin: '',
             animalVariety: '',
             animalAge: '',
             gender: '',
@@ -68,6 +70,7 @@ const AddPetForm = () => {
                     userId: user ? user.uid : null,
                 });
                 console.log('Ad successfully submitted!');
+                navigate('/user-profile');
             } catch (error) {
                 console.error('Error submitting ad:', error);
             }
@@ -94,9 +97,7 @@ const AddPetForm = () => {
             </div>
             {step === 0 && <FormStepOne formik={formik} />}
             {step === 1 && <FormStepTwo formik={formik} />}
-            {step === 2 && (
-                <FormStepThree formik={formik} setImageFile={setImageFile} />
-            )}
+            {step === 2 && (<FormStepThree formik={formik} setImageFile={setImageFile} />)}
             <div className="form-button">
                 <div className="form-button__container">
                     {step > 0 && (

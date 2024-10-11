@@ -2,6 +2,10 @@ import './UserProfilePage.scss'
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import PetCard from '../../components/pet-card/PetCard';
+import Button from '../../ui/button/Button';
 
 type UserData = {
     firstName: string;
@@ -12,18 +16,19 @@ type UserData = {
 
 const UserProfilePage = () => {
     const [userData, setUserData] = useState<UserData | null>(null);
-    const userId = auth.currentUser?.uid; // Отримання ID поточного користувача
+    const navigate = useNavigate();
+    const userId = auth.currentUser?.uid;
 
     useEffect(() => {
         const fetchUserData = async () => {
-            if (!userId) return; // Перевірка, чи користувач увійшов у систему
+            if (!userId) return;
 
             try {
-                const docRef = doc(db, "users", userId); // Отримання документа з Firestore
+                const docRef = doc(db, "users", userId);
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
-                    setUserData(docSnap.data() as UserData); // Збереження даних у стан
+                    setUserData(docSnap.data() as UserData);
                 } else {
                     console.log("Користувача не знайдено!");
                 }
@@ -35,16 +40,28 @@ const UserProfilePage = () => {
         fetchUserData();
     }, [userId]);
 
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            navigate('/');
+        } catch (error) {
+            console.error("Помилка при виході з акаунту:", error);
+        }
+    };
+
     return (
-        <div className="user-profile-wrapper">
-            <section className="user-profile app-container">
+        <div className="user-profile-wrapper app-container">
+            <section className="user-profile">
                 {userData ? (
                     <>
                         <div className="user-profile__name">
                             <h2 className="user-profile__name-title">
                                 {userData.firstName} {userData.lastName}
                             </h2>
-                            <a href="#">Редагувати дані</a>
+                            <div className='user-profile__manage'>
+                                <a href="#">Редагувати дані</a>
+                                <Button className='logout' onClick={handleLogout}>Вийти з акаунту</Button>
+                            </div>
                         </div>
                         <div className="user-profile__data">
                             <div className='user-profile__data-wrapper'>
@@ -87,13 +104,23 @@ const UserProfilePage = () => {
                                     </div>
                                     Імейл
                                 </div>
-                                <p>{auth.currentUser?.email}</p> {/* Отримання email з Firebase Auth */}
+                                <p>{auth.currentUser?.email}</p>
                             </div>
                         </div>
                     </>
                 ) : (
                     <p>Завантаження даних...</p>
                 )}
+            </section>
+            <section className="user-pets">
+                <div className="user-pets__name">
+                    <h2 className="user-pets__title">
+                        Оголошення
+                    </h2>
+                </div>
+                <div className='user-pets__cards'>
+                    <PetCard />
+                </div>
             </section>
         </div>
     );

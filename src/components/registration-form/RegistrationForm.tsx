@@ -28,7 +28,6 @@ const RegistrationForm = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [checked, setChecked] = useState(false);
-
     const navigate = useNavigate();
 
     const handleRegistration = async (values: RegistrationValues) => {

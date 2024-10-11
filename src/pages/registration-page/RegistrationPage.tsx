@@ -1,5 +1,6 @@
 import RegistrationForm from '../../components/registration-form/RegistrationForm';
 import './RegistrationPage.scss';
+import { Link } from 'react-router-dom';
 
 const Registration = () => {
     return (
@@ -14,9 +15,9 @@ const Registration = () => {
                 <RegistrationForm />
                 <p className="login-alternative">
                     Вже маєте акаунт?{' '}
-                    <a className="login-alternative__link" href="#">
+                    <Link to="/login" className="login-alternative__link" >
                         Вхід
-                    </a>
+                    </Link>
                 </p>
             </section>
         </div>

@@ -6,6 +6,8 @@ import {
     MenuItem,
     FormControlLabel,
     Checkbox,
+    RadioGroup,
+    Radio
 } from '@mui/material';
 import { ANIMAL_TYPES } from '../../../app.config';
 import { FormikProps } from 'formik';
@@ -19,11 +21,12 @@ const FormStepOne: React.FC<FormStepOneProps> = ({ formik }) => {
     return (
         <div className="step-one-container">
             <TextField
+                name="adName"
                 fullWidth
+                required
                 label="Назва оголошення"
                 variant="outlined"
                 margin="normal"
-                name="adName"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.adName}
@@ -57,11 +60,12 @@ const FormStepOne: React.FC<FormStepOneProps> = ({ formik }) => {
             </FormControl>
             <div>
                 <TextField
+                    name="price"
                     fullWidth
+                    required
                     label="Ціна"
                     variant="outlined"
                     margin="normal"
-                    name="price"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.price}
@@ -86,11 +90,12 @@ const FormStepOne: React.FC<FormStepOneProps> = ({ formik }) => {
                 />
             </div>
             <TextField
+                name="location"
                 fullWidth
+                required
                 label="Локація"
                 variant="outlined"
                 margin="normal"
-                name="location"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.location}
@@ -100,21 +105,30 @@ const FormStepOne: React.FC<FormStepOneProps> = ({ formik }) => {
                 }
                 helperText=""
             />
-            <TextField
-                fullWidth
-                label="Порода"
-                variant="outlined"
-                margin="normal"
-                name="animalBreed"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.animalBreed}
-                error={
-                    formik.touched.animalBreed &&
-                    Boolean(formik.errors.animalBreed)
-                }
-                helperText=""
-            />
+            <FormControl component="fieldset">
+                <label className="form-label">Походження тварини</label>
+                <RadioGroup
+                    name="petOrigin"
+                    value={formik.values.petOrigin}
+                    onChange={formik.handleChange}
+                >
+                    <FormControlLabel
+                        value="shelter"
+                        control={<Radio />}
+                        label="Я представник притулку"
+                    />
+                    <FormControlLabel
+                        value="nursery"
+                        control={<Radio />}
+                        label="Я власник розплідника"
+                    />
+                    <FormControlLabel
+                        value="private"
+                        control={<Radio />}
+                        label="Я приватна особа"
+                    />
+                </RadioGroup>
+            </FormControl>
         </div>
     );
 };

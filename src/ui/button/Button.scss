@@ -70,4 +70,14 @@
     &.publish {
         padding: 10px 24px;
     }
+
+    &.logout {
+        width: 180px;
+        padding: 10px 24px;
+        background-color: $color-red-3;
+
+        &:hover {
+            background-color: $color-red-5;
+        }
+    }
 }

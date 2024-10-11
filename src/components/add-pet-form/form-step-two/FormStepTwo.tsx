@@ -19,11 +19,12 @@ const FormStepTwo: React.FC<FormStepOneProps> = ({ formik }) => {
     return (
         <div className="step-two-container">
             <TextField
+                name="animalVariety"
                 fullWidth
+                required
                 label="Різновид"
                 variant="outlined"
                 margin="normal"
-                name="animalVariety"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.animalVariety}
@@ -35,12 +36,13 @@ const FormStepTwo: React.FC<FormStepOneProps> = ({ formik }) => {
             />
             <div className="form-age-control">
                 <TextField
+                    name="animalAge"
                     fullWidth
+                    required
                     type="number"
                     label="Вік тварини"
                     variant="outlined"
                     margin="normal"
-                    name="animalAge"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.animalAge || ''}

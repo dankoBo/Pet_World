@@ -1,5 +1,6 @@
+import './LoginPage.scss'; 
 import LoginForm from '../../components/login-form/LoginForm';
-import './LoginPage.scss'
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
     return (
@@ -14,13 +15,13 @@ const LoginPage = () => {
                 <LoginForm />
                 <p className="registration-alternative">
                     Ще не маєте акаунту?{' '}
-                    <a className="registration-alternative__link" href="#">
+                    <Link to="/registration" className="registration-alternative__link" >
                         Зареєструватися
-                    </a>
+                    </Link>
                 </p>
             </section>
         </div>
-    )
+    );
 };
 
 export default LoginPage;

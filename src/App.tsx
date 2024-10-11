@@ -16,10 +16,11 @@ function App() {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user); // Оновлює статус аутентифікації
+            setUser(user);
+            console.log('User state changed:', user);
         });
 
-        return () => unsubscribe(); // Очистка підписки
+        return () => unsubscribe();
     }, []);
 
     return (
@@ -30,7 +31,10 @@ function App() {
                     <Route path="/" element={<MainPage />} />
                     <Route path="/registration" element={<RegistrationPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route path="/user-profile" element={<UserProfilePage />} />
+                    <Route 
+                        path="/user-profile" 
+                        element={user ? <UserProfilePage /> : <LoginPage />} 
+                    />
                     <Route
                         path="/add-pet"
                         element={user ? <AddPetPage /> : <RegistrationPage />}
