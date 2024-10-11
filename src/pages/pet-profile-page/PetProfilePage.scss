@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.pet-profile-wrapper {
+    @include wrapper-bg;
+    height: 100%;
+    padding: 48px 0 64px;
+}
+
+.pet-profile {
+    height: 100%;
+    border: 1px solid green;
+}

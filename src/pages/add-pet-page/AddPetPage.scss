@@ -2,8 +2,9 @@
 @import '../../styles/mixins.scss';
 
 .add-pet-wrapper {
-    width: 100%;
-    margin-top: 28px;
+    @include wrapper-bg;
+    height: 100%;
+    padding-top: 28px;
 }
 
 .add-pet {

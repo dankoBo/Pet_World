@@ -50,8 +50,8 @@ const UserProfilePage = () => {
     };
 
     return (
-        <div className="user-profile-wrapper app-container">
-            <section className="user-profile">
+        <div className="user-profile-wrapper">
+            <section className="user-profile app-container">
                 {userData ? (
                     <>
                         <div className="user-profile__name">
@@ -111,15 +111,15 @@ const UserProfilePage = () => {
                 ) : (
                     <p>Завантаження даних...</p>
                 )}
-            </section>
-            <section className="user-pets">
-                <div className="user-pets__name">
-                    <h2 className="user-pets__title">
-                        Оголошення
-                    </h2>
-                </div>
-                <div className='user-pets__cards'>
-                    <PetCard />
+                <div className="user-pets">
+                    <div className="user-pets__name">
+                        <h2 className="user-pets__title">
+                            Оголошення
+                        </h2>
+                    </div>
+                    <div className='user-pets__cards'>
+                        <PetCard />
+                    </div>
                 </div>
             </section>
         </div>

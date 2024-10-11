@@ -1,6 +1,8 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .user-profile-wrapper {
+    @include wrapper-bg;
     padding: 0 0 112px;
 }
 

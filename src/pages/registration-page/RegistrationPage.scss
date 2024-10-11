@@ -2,7 +2,7 @@
 @import '../../styles/mixins.scss';
 
 .registration-form-wrapper {
-    width: 100%;
+    @include wrapper-bg;
     margin-top: 28px;
 }
 

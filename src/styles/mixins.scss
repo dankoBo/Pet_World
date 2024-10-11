@@ -4,3 +4,9 @@
     font-weight: $weight;
     letter-spacing: $letter-spacing;
 }
+
+@mixin wrapper-bg {
+    background: 
+        url('/src/assets/backgrounds/paws.png') right 0 top 0 / auto no-repeat,
+        url('src/assets/backgrounds/paws.png') left 0 bottom 0 / auto no-repeat;
+}

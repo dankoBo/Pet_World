@@ -1,5 +1,5 @@
-import RegistrationForm from '../../components/registration-form/RegistrationForm';
 import './RegistrationPage.scss';
+import RegistrationForm from '../../components/registration-form/RegistrationForm';
 import { Link } from 'react-router-dom';
 
 const Registration = () => {

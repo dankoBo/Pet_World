@@ -1,4 +1,3 @@
-// import Registration from "../../components/registration/Registration";
 import PetCard from '../../components/pet-card/PetCard';
 import PetCategories from '../../components/pet-categories/PetCategories';
 import SearchForm from '../../components/search-form/SearchForm'
