@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.step-three-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-label {
+    @include text-sizes($font-size-s-1, $line-height-1, $letter-spacing-2, 400);
+    color: $color-black-3;
+}

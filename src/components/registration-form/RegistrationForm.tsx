@@ -144,7 +144,7 @@ const RegistrationForm = () => {
                 render={(ref, props) => (
                     <TextField
                         {...props}
-                        inputRef={ref} // Передаємо реф у TextField
+                        inputRef={ref}
                         type="tel"
                         name="phone"
                         fullWidth
