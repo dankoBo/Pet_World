@@ -2,7 +2,7 @@ import './PetCard.scss';
 import { IoLocationOutline } from 'react-icons/io5';
 import { BsGenderAmbiguous } from 'react-icons/bs';
 import { IoCalendarOutline } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 type PetCardProps = {
     id: string;
@@ -15,14 +15,8 @@ type PetCardProps = {
 }
 
 const PetCard: React.FC<PetCardProps> = ({ adName, location, gender, animalAge, price, imageUrl, id }) => {
-    const navigate = useNavigate();
-
-    const handleCardClick = () => {
-        navigate(`/pet-profile/${id}`);
-    };
-    
     return (
-        <div className="pet-card" onClick={handleCardClick}>
+        <Link to={`/pet-profile/${id}`} className="pet-card">
             <img
                 className="pet-card__photo"
                 src={imageUrl}
@@ -48,7 +42,7 @@ const PetCard: React.FC<PetCardProps> = ({ adName, location, gender, animalAge, 
                 </ul>
             <p className="price">₴ {price}</p>
             </div>
-        </div>
+        </Link>
     );
 };
 

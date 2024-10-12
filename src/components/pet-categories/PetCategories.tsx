@@ -1,31 +1,9 @@
 import './PetCategories.scss';
-
-const PET_CATEGORIES = [
-    {
-        amount: 150,
-        name: 'Собак',
-    },
-    {
-        amount: 135,
-        name: 'Птахів',
-    },
-    {
-        amount: 110,
-        name: 'Котів',
-    },
-    {
-        amount: 50,
-        name: 'Гризунів',
-    },
-    {
-        amount: 10,
-        name: 'Рептилій',
-    },
-];
+import { PET_CATEGORIES } from '../../app.config';
 
 type PetCategoriesProps = {
     className?: string;
-}
+};
 
 const PetCategories: React.FC<PetCategoriesProps> = ({ className }) => {
     const wrapperClass = 'pet-categories-wrapper ' + (className ?? '');

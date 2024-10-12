@@ -6,7 +6,7 @@ export default function Footer() {
         <div className="main-footer-wrapper">
             <footer className="main-footer app-container">
                 <div className="main-info">
-                    <Link to="/" >
+                    <Link to="/">
                         <svg width="204" height="56">
                             <use xlinkHref="/assets/icons/sprite-logotypes.svg#footer-logo" />
                         </svg>

@@ -22,21 +22,21 @@
     justify-content: space-between;
     margin-bottom: 20px;
 }
-  
+
 .step {
     width: 100%;
     text-align: center;
     border-radius: 5px;
-    background-color: rgb(236, 222, 255);;
+    background-color: rgb(236, 222, 255);
     color: #333333;
 
     &.active {
-        background-color: rgb(159, 90, 255);;
+        background-color: rgb(159, 90, 255);
         color: white;
     }
 
     &.completed {
-        background-color: rgb(159, 90, 255);;
+        background-color: rgb(159, 90, 255);
         color: white;
     }
 }

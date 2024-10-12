@@ -1,0 +1,43 @@
+@import '../../styles/variables.scss';
+
+.health-documents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        font-size: $font-size-s-1;
+        gap: 8px;
+    }
+
+    &__labels {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+}
+
+.status-block__header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.status-button {
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: $color-white-1;
+    font-size: 14px;
+    border: none;
+    cursor: default;
+
+    &--active {
+        background-color: $color-green-1;
+    }
+
+    &--inactive {
+        background-color: $color-red-5;
+    }
+}

@@ -1,3 +1,4 @@
+import './FormStepOne.scss';
 import {
     TextField,
     FormControl,
@@ -7,11 +8,10 @@ import {
     FormControlLabel,
     Checkbox,
     RadioGroup,
-    Radio
+    Radio,
 } from '@mui/material';
 import { ANIMAL_TYPES } from '../../../app.config';
 import { FormikProps } from 'formik';
-import './FormStepOne.scss';
 
 type FormStepOneProps = {
     formik: FormikProps<any>;
@@ -100,8 +100,7 @@ const FormStepOne: React.FC<FormStepOneProps> = ({ formik }) => {
                 onBlur={formik.handleBlur}
                 value={formik.values.location}
                 error={
-                    formik.touched.location && 
-                    Boolean(formik.errors.location)
+                    formik.touched.location && Boolean(formik.errors.location)
                 }
                 helperText=""
             />
@@ -113,17 +112,17 @@ const FormStepOne: React.FC<FormStepOneProps> = ({ formik }) => {
                     onChange={formik.handleChange}
                 >
                     <FormControlLabel
-                        value="shelter"
+                        value="Притулок"
                         control={<Radio />}
                         label="Я представник притулку"
                     />
                     <FormControlLabel
-                        value="nursery"
+                        value="Розплідник"
                         control={<Radio />}
                         label="Я власник розплідника"
                     />
                     <FormControlLabel
-                        value="private"
+                        value="Приватний власник"
                         control={<Radio />}
                         label="Я приватна особа"
                     />

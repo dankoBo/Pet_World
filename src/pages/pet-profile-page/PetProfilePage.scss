@@ -9,9 +9,12 @@
 
 .pet-profile {
     height: 100%;
-    // border: 1px solid green;
     display: flex;
     justify-content: space-between;
+}
+
+.section-title {
+    @include text-sizes($font-size-s-1, $line-height-1, $letter-spacing-2, 500);
 }
 
 .media {
@@ -36,14 +39,37 @@
 
 
     &__title {
-        @include text-sizes($font-size-s-1, $line-height-1, $letter-spacing-2, 500)
+        @include text-sizes($font-size-s-1, $line-height-1, $letter-spacing-2, 500);
     }
 
     &__text {
-        @include text-sizes($font-size-s-2, $line-height-1, $letter-spacing-2, 400)
+        @include text-sizes($font-size-s-2, $line-height-1, $letter-spacing-2, 400);
     }
 }
 
 .details {
     width: 496px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+    }
+
+    &__adName {
+        @include text-sizes($font-size-l-1, $line-height-1, $letter-spacing-2, 500);
+    }
+
+    &__price {
+        @include text-sizes($font-size-m-1, $line-height-5, 500);
+    }
+}
+
+.characteristics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

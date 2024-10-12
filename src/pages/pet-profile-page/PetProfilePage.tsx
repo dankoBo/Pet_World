@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
+import PetDetails from '../../ui/pet-details/PetDetails';
+import HealthDocuments from '../../ui/health-documents/HealthDocuments';
 
 type PetData = {
     userId?: string;
@@ -13,7 +15,7 @@ type PetData = {
     animalType?: string;
     animalVariety?: string;
     gender?: string;
-    animalAge?: number;
+    animalAge?: string;
     ageUnit?: string;
     location?: string;
     petOrigin?: string;
@@ -39,20 +41,23 @@ const PetProfilePage = () => {
 
     useEffect(() => {
         const fetchPetData = async () => {
-            if (!petId) return;
-
+            if (!petId) {
+                console.error('No petId provided!');
+                return;
+            }
+    
             try {
                 const petRef = doc(db, 'animals', petId);
                 const petSnap = await getDoc(petRef);
-
+    
                 if (petSnap.exists()) {
                     const pet = petSnap.data();
                     setPetData(pet);
-
+    
                     if (pet.userId) {
                         const userRef = doc(db, 'users', pet.userId);
                         const userSnap = await getDoc(userRef);
-
+    
                         if (userSnap.exists()) {
                             setUserData(userSnap.data());
                         } else {
@@ -66,7 +71,6 @@ const PetProfilePage = () => {
                 console.error('Помилка при завантаженні тваринки:', error);
             }
         };
-
         fetchPetData();
     }, [petId]);
 
@@ -93,42 +97,80 @@ const PetProfilePage = () => {
                         <p className="details__adName">{petData.adName}</p>
                         <p className="details__price">₴ {petData.price}</p>
                     </div>
-                    <div className="details__contacts">
-                        <h2 className="details__title">Контакти</h2>
+                    <div className="details-contacts">
+                        <h2 className="section-title">Контакти</h2>
                         {userData ? (
                             <>
-                                <p className="details__firstName">{userData.firstName}</p>
-                                <p className="details__phone">{userData.phone}</p>
+                                <PetDetails
+                                    icon="person"
+                                    label="Контактна особа"
+                                    data={userData.firstName || ''}
+                                />
+                                <PetDetails
+                                    icon="phone"
+                                    label="Номер телефону"
+                                    data={userData.phone || ''}
+                                />
                             </>
                         ) : (
                             <p>Контактні дані недоступні</p>
                         )}
                     </div>
                     <div className="characteristics">
-                        <h2 className="characteristics__title">Характеристики</h2>
-                        <p className="characteristics__animal-type">{petData.animalType}</p>
-                        <p className="characteristics__animal-variety">{petData.animalVariety}</p>
-                        <p className="characteristics__animal-gender">{petData.gender}</p>
-                        <p className="characteristics__animal-age">{petData.animalAge} {petData.ageUnit}</p>
-                        <p className="characteristics__animal-location">{petData.location}</p>
-                        <p className="characteristics__animal-pet-origin">{petData.petOrigin}</p>
-                        <div className="health">
-                            Здоров'я
-                            <div className="health__labels">
-                                <span className='health__sterilization'>{petData.sterilization ? 'Так' : 'Ні'}</span>
-                                <span className='health__vaccination'>{petData.vaccination ? 'Так' : 'Ні'}</span>
-                                <span className='health__chip'>{petData.chip ? 'Так' : 'Ні'}</span>
-                                <span className='health__parasite'>{petData.parasite ? 'Так' : 'Ні'}</span>
-                            </div>
+                        <div>
+                            <h2 className="section-title">Характеристики</h2>
+                            <PetDetails
+                                icon="paw"
+                                label="Вид"
+                                data={petData.animalType || ''}
+                            />
+                            <PetDetails
+                                icon="label"
+                                label="Різновид"
+                                data={petData.animalVariety || ''}
+                            />
+                            <PetDetails
+                                icon="sex"
+                                label="Стать"
+                                data={petData.gender || ''}
+                            />
+                            <PetDetails
+                                icon="calendar"
+                                label="Вік"
+                                data={petData.animalAge || ''}
+                            />
+                            <PetDetails
+                                icon="location"
+                                label="Локація"
+                                data={petData.location || ''}
+                            />
+                            <PetDetails
+                                icon="house"
+                                label="Походження"
+                                data={petData.petOrigin || ''}
+                            />
                         </div>
-                        <div className="documents">
-                            Здоров'я
-                            <div className="documents__labels">
-                                <span className='documents__passport'>{petData.passport ? 'Так' : 'Ні'}</span>
-                                <span className='documents__pedigree'>{petData.pedigree ? 'Так' : 'Ні'}</span>
-                                <span className='documents__cynology'>{petData.cynology ? 'Так' : 'Ні'}</span>
-                                <span className='documents__metrics'>{petData.metrics ? 'Так' : 'Ні'}</span>
-                            </div>
+                        <div>
+                            <HealthDocuments
+                                icon="health-shield"
+                                title="Здоров'я"
+                                statuses={[
+                                    { label: 'Стерилізація', value: petData.sterilization ?? false },
+                                    { label: 'Вакцинація', value: petData.vaccination ?? false },
+                                    { label: 'Чіп', value: petData.chip ?? false },
+                                    { label: 'Обробка від паразитів', value: petData.parasite ?? false },
+                                ]}
+                            />
+                            <HealthDocuments
+                                icon="document"
+                                title="Документи"
+                                statuses={[
+                                    { label: 'Ветаспорт', value: petData.passport ?? false },
+                                    { label: 'Родовід', value: petData.pedigree ?? false },
+                                    { label: 'FCI/KCY', value: petData.cynology ?? false },
+                                    { label: 'Метрика цуценяти', value: petData.metrics ?? false },
+                                ]}
+                            />
                         </div>
                     </div>
                 </div>

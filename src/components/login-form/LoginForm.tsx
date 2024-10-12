@@ -1,16 +1,14 @@
 import './LoginForm.scss';
 import { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
+import { TextField, IconButton, InputAdornment } from '@mui/material';
 import { MdVisibility } from 'react-icons/md';
 import { MdVisibilityOff } from 'react-icons/md';
 import { useFormik } from 'formik';
 import { loginSchema } from '../../validation/loginValidation';
-import Button from '../../ui/button/Button';
-import { auth } from '../../firebase'
+import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../ui/button/Button';
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -24,7 +22,7 @@ const LoginForm = () => {
         validationSchema: loginSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                await signInWithEmailAndPassword(auth, values.email, values.password);
+                await signInWithEmailAndPassword(auth,values.email,values.password);
                 navigate('/');
             } catch (error) {
                 console.error('Помилка при вході:', error);
@@ -61,7 +59,9 @@ const LoginForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.password}
                 onBlur={formik.handleBlur}
-                error={formik.touched.password && Boolean(formik.errors.password)}
+                error={
+                    formik.touched.password && Boolean(formik.errors.password)
+                }
                 helperText={formik.touched.password && formik.errors.password}
                 slotProps={{
                     input: {
@@ -72,22 +72,26 @@ const LoginForm = () => {
                                     onClick={handleClickShowPassword}
                                     edge="end"
                                 >
-                                    {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
+                                    {showPassword ? (
+                                        <MdVisibilityOff />
+                                    ) : (
+                                        <MdVisibility />
+                                    )}
                                 </IconButton>
                             </InputAdornment>
                         ),
                     },
                 }}
             />
-            <Button 
-                type="submit" 
+            <Button
+                type="submit"
                 className="button"
                 disabled={formik.isSubmitting || !formik.isValid}
             >
                 Увійти
             </Button>
         </form>
-    )
+    );
 };
 
 export default LoginForm;

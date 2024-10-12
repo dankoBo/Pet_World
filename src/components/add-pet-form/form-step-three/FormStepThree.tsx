@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import PhotoInput from '../../photo-input/PhotoInput';
 import { FormikProps } from 'formik';
-import './FormStepThree.scss'
+import './FormStepThree.scss';
 
 type FormStepThreeProps = {
     formik: FormikProps<any>;
@@ -10,7 +10,7 @@ type FormStepThreeProps = {
 
 const Step3: React.FC<FormStepThreeProps> = ({ formik, setImageFile }) => {
     return (
-        <div className='step-three-container'>
+        <div className="step-three-container">
             <TextField
                 fullWidth
                 label="Додаткова інформація"
@@ -23,7 +23,7 @@ const Step3: React.FC<FormStepThreeProps> = ({ formik, setImageFile }) => {
                 value={formik.values.additional}
             />
             <div>
-                <label className='form-label'>Фото</label>
+                <label className="form-label">Фото</label>
                 <PhotoInput onImageSelect={setImageFile} />
             </div>
         </div>

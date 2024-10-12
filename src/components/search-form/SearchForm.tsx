@@ -1,6 +1,5 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-
 import './SearchForm.scss';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 import {
     ANIMAL_TYPES,
@@ -11,7 +10,6 @@ import {
 import Button from '../../ui/button/Button';
 
 export default function SearchForm() {
-
     return (
         <form className="search-form">
             <FormControl>

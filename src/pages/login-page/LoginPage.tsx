@@ -15,7 +15,7 @@ const LoginPage = () => {
                 <LoginForm />
                 <p className="registration-alternative">
                     Ще не маєте акаунту?{' '}
-                    <Link to="/registration" className="registration-alternative__link" >
+                    <Link to="/registration" className="registration-alternative__link">
                         Зареєструватися
                     </Link>
                 </p>

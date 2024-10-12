@@ -1,17 +1,18 @@
 import './AddPetForm.scss';
 import { useState } from 'react';
 import { useFormik } from 'formik';
+import { addPetSchema } from '../../validation/addPetValidation';
 import Button from '../../ui/button/Button';
 import FormStepOne from './form-step-one/FormStepOne';
 import FormStepTwo from './form-step-two/FormStepTwo';
 import FormStepThree from './form-step-three/FormStepThree';
+import { db } from '../../firebase';
 import { getAuth } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { db } from '../../firebase';
-import { addPetSchema } from '../../validation/addPetValidation';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { serverTimestamp } from 'firebase/firestore';
 
 const uploadImageToStorage = async (
     file: File | null
@@ -68,6 +69,7 @@ const AddPetForm = () => {
             try {
                 await addDoc(collection(db, 'animals'), {
                     id: uuidv4(),
+                    createdAt: serverTimestamp(),
                     ...values,
                     imageUrl,
                     userId: user ? user.uid : null,
@@ -101,7 +103,9 @@ const AddPetForm = () => {
             </div>
             {step === 0 && <FormStepOne formik={formik} />}
             {step === 1 && <FormStepTwo formik={formik} />}
-            {step === 2 && (<FormStepThree formik={formik} setImageFile={setImageFile} />)}
+            {step === 2 && (
+                <FormStepThree formik={formik} setImageFile={setImageFile} />
+            )}
             <div className="form-button">
                 <div className="form-button__container">
                     {step > 0 && (

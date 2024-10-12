@@ -7,7 +7,6 @@
 }
 
 .user-profile {
-
     &__name {
         display: flex;
         justify-content: space-between;
@@ -36,6 +35,7 @@
         justify-content: space-between;
         align-items: center;
     }
+
     &__manage {
         display: flex;
         align-items: center;
@@ -44,7 +44,6 @@
 }
 
 .user-pets {
-
     &__name {
         display: flex;
         justify-content: space-between;

@@ -1,7 +1,12 @@
-import './PhotoInput.scss'
+import './PhotoInput.scss';
 import { ChangeEvent, useRef, useState } from "react";
 
-const PhotoInput = ({ accept = "image/*", onImageSelect }) => {
+type PhotoInputProps = {
+    accept?: string;
+    onImageSelect: (file: File) => void;
+}
+
+const PhotoInput: React.FC<PhotoInputProps> = ({ accept = "image/*", onImageSelect }) => {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 

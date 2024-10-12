@@ -1,7 +1,6 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-
 .registration-form {
     display: flex;
     flex-direction: column;
@@ -9,7 +8,7 @@
 }
 
 .privacy-policy {
-    @include text-sizes($font-size-s-1, $line-height-4, $letter-spacing-4, 400 );
+    @include text-sizes($font-size-s-1, $line-height-4, $letter-spacing-4, 400);
     color: $color-black-3;
     display: flex;
     align-items: first baseline;

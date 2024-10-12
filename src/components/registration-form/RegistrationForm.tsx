@@ -1,17 +1,15 @@
 import './RegistrationForm.scss';
 import { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
+import { auth } from '../../firebase';
+import { db } from '../../firebase';
+import { doc, setDoc } from 'firebase/firestore';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
 import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
-import IconButton from '@mui/material/IconButton';
 import Button from '../../ui/button/Button';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { registrationSchema } from '../../validation/registrationValidation';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
-import { db } from '../../firebase';
-import { doc, setDoc } from 'firebase/firestore';
 import MaskedInput from 'react-text-mask';
 
 type RegistrationValues = {

@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.pet-details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+
+    &__icon {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+}

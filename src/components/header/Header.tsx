@@ -37,7 +37,10 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="nav-header__link-profile" to="/user-profile">
+                                    <Link
+                                        className="nav-header__link-profile"
+                                        to="/user-profile"
+                                    >
                                         <div className="nav-header__avatar-wrapper">
                                             <img
                                                 src="/assets/icons/sprite-icons-small.svg#avatar-placeholder"
