@@ -11,6 +11,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db } from '../../firebase';
 import { addPetSchema } from '../../validation/addPetValidation';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 const uploadImageToStorage = async (
     file: File | null
@@ -45,6 +46,7 @@ const AddPetForm = () => {
             petOrigin: '',
             animalVariety: '',
             animalAge: '',
+            ageUnit: '',
             gender: '',
             chip: false,
             sterilization: false,
@@ -65,9 +67,11 @@ const AddPetForm = () => {
 
             try {
                 await addDoc(collection(db, 'animals'), {
+                    id: uuidv4(),
                     ...values,
                     imageUrl,
                     userId: user ? user.uid : null,
+                    animalAge: `${values.animalAge} ${values.ageUnit}`,
                 });
                 console.log('Ad successfully submitted!');
                 navigate('/user-profile');

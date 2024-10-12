@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from './components/header/Header';
-// import MainPage from './pages/main-page/MainPage';
+import MainPage from './pages/main-page/MainPage';
 import RegistrationPage from './pages/registration-page/RegistrationPage';
 import { Routes, Route } from 'react-router-dom';
 import Footer from './components/footer/Footer';
@@ -28,14 +28,14 @@ function App() {
             <Header />
             <main className="main">
                 <Routes>
-                    {/* <Route path="/" element={<MainPage />} /> */}
-                    <Route path="/" element={<PetProfilePage />} />
+                    <Route path="/" element={<MainPage/>} />
                     <Route path="/registration" element={<RegistrationPage />} />
                     <Route path="/login" element={<LoginPage />} />
                     <Route 
                         path="/user-profile" 
                         element={user ? <UserProfilePage /> : <LoginPage />} 
                     />
+                    <Route path="/pet-profile/:petId" element={<PetProfilePage />} />
                     <Route
                         path="/add-pet"
                         element={user ? <AddPetPage /> : <RegistrationPage />}

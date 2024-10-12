@@ -63,8 +63,8 @@ const FormStepTwo: React.FC<FormStepOneProps> = ({ formik }) => {
                             formik.setFieldValue('ageUnit', e.target.value);
                         }}
                     >
-                        <MenuItem value="months">Місяців</MenuItem>
-                        <MenuItem value="years">Років</MenuItem>
+                        <MenuItem value="місяці">Місяців</MenuItem>
+                        <MenuItem value="роки">Років</MenuItem>
                     </Select>
                 </FormControl>
             </div>
@@ -76,17 +76,17 @@ const FormStepTwo: React.FC<FormStepOneProps> = ({ formik }) => {
                     onChange={formik.handleChange}
                 >
                     <FormControlLabel
-                        value="male"
+                        value="хлопчик"
                         control={<Radio />}
-                        label="Хлопчик"
+                        label="хлопчик"
                     />
                     <FormControlLabel
                         value="female"
                         control={<Radio />}
-                        label="Дівчинка"
+                        label="дівчинка"
                     />
                     <FormControlLabel
-                        value="unknown"
+                        value="невідомо"
                         control={<Radio />}
                         label="Невідомо"
                     />

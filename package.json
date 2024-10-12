@@ -22,6 +22,7 @@
     "react-multistep": "^5.5.9",
     "react-router-dom": "^6.26.2",
     "react-text-mask": "^5.5.0",
+    "uuid": "^10.0.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {

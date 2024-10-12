@@ -9,5 +9,41 @@
 
 .pet-profile {
     height: 100%;
-    border: 1px solid green;
+    // border: 1px solid green;
+    display: flex;
+    justify-content: space-between;
+}
+
+.media {
+    width: 704px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+
+    &__pet-image {
+        width: 100%;
+        height: 500px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+}
+
+.additional-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+
+    &__title {
+        @include text-sizes($font-size-s-1, $line-height-1, $letter-spacing-2, 500)
+    }
+
+    &__text {
+        @include text-sizes($font-size-s-2, $line-height-1, $letter-spacing-2, 400)
+    }
+}
+
+.details {
+    width: 496px;
 }
