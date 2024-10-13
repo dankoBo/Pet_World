@@ -1,0 +1,7 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.advertisement-page-wrapper {
+    $width-app: 1440px;
+    @include wrapper-bg;
+}

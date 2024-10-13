@@ -18,12 +18,11 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <a
+                                    <Link to="/advertisement"
                                         className="nav-header__link-ads"
-                                        href="#"
                                     >
                                         Оголошення
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>

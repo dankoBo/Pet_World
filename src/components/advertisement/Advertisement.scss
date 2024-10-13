@@ -1,0 +1,56 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.advertisement-wrapper {
+    padding: 20px 0;
+}
+
+.advertisement {
+    display: flex;
+    justify-content: space-between;
+
+    &__filters {
+        width: 288px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 20px;
+    }
+
+    &__title {
+        @include text-sizes($font-size-m-4, $line-height-1, $letter-spacing-1, 500);
+    }
+
+    &__animals {
+        width: 912px;
+        height: fit-content;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 23px;
+        margin: 0 auto; 
+        padding: 23px 0;
+    }
+
+    &__price-container {
+        display: flex;
+        gap: 10px;
+    }
+
+    &__filter-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.advertisement-animals-pagination {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+}

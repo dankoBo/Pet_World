@@ -1,10 +1,12 @@
 import './PetProfilePage.scss';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { doc, getDoc, deleteDoc } from 'firebase/firestore';
+import { db, auth } from '../../firebase';
 import PetDetails from '../../ui/pet-details/PetDetails';
 import HealthDocuments from '../../ui/health-documents/HealthDocuments';
+import Button from '../../ui/button/Button';
+import { useNavigate } from 'react-router-dom';
 
 type PetData = {
     userId?: string;
@@ -38,6 +40,8 @@ const PetProfilePage = () => {
     const { petId } = useParams();
     const [petData, setPetData] = useState<PetData | null>(null);
     const [userData, setUserData] = useState<UserData | null>(null);
+    const userId = auth.currentUser?.uid;
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchPetData = async () => {
@@ -73,6 +77,19 @@ const PetProfilePage = () => {
         };
         fetchPetData();
     }, [petId]);
+
+    const handleDelete = async () => {
+        if (!petId) return;
+
+        try {
+            const petRef = doc(db, 'animals', petId);
+            await deleteDoc(petRef);
+            console.log("Тваринка успішно видалена!");
+            navigate('/user-profile');
+        } catch (error) {
+            console.error("Помилка при видаленні тваринки:", error);
+        }
+    };
 
     if (!petData) {
         return <p>Завантаження даних...</p>;
@@ -173,6 +190,9 @@ const PetProfilePage = () => {
                             />
                         </div>
                     </div>
+                    {userId && (
+                        <Button className='warning' onClick={handleDelete}>Видалити</Button>
+                    )}
                 </div>
             </div>
         </div>

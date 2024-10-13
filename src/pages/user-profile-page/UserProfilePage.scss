@@ -3,6 +3,7 @@
 
 .user-profile-wrapper {
     @include wrapper-bg;
+    height: 100%;
     padding: 0 0 112px;
 }
 

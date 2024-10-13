@@ -2,7 +2,6 @@ import './MainPage.scss';
 import { useEffect, useState } from 'react';
 import PetCard from '../../components/pet-card/PetCard';
 import PetCategories from '../../components/pet-categories/PetCategories';
-import SearchForm from '../../components/search-form/SearchForm';
 import { db } from '../../firebase';
 import { collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
 
@@ -56,7 +55,6 @@ const MainPage = () => {
                     <h1 className="main-page__main-header">
                         Звідси починається найкраща дружба
                     </h1>
-                    <SearchForm />
                 </header>
                 <PetCategories className="main-page__pet-categories" />
                 <section className="newest-ads-section">

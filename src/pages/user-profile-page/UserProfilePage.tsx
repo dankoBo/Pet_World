@@ -88,7 +88,7 @@ const UserProfilePage = () => {
                             </h2>
                             <div className='user-profile__manage'>
                                 <a href="#">Редагувати дані</a>
-                                <Button className='logout' onClick={handleLogout}>Вийти з акаунту</Button>
+                                <Button className='warning' onClick={handleLogout}>Вийти з акаунту</Button>
                             </div>
                         </div>
                         <div className="user-profile__data">

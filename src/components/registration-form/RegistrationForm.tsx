@@ -40,8 +40,8 @@ const RegistrationForm = () => {
                 phone: values.phone,
             });
 
-            console.log('Користувач зареєстрований:', user);
-            navigate('/');
+            console.log('Користувач зареєстрований:');
+            navigate('/user-profile');
         } catch (error) {
             console.error('Помилка реєстрації:', error instanceof Error ? error.message : 'Невідома помилка');
         }

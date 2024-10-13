@@ -21,6 +21,7 @@ export const PLACEHOLDERS = {
 };
 
 export const ANIMAL_TYPES = ['Собаки', 'Коти', 'Гризуни', 'Риби', 'Птахи', 'Рептилії', 'Інші'];
+export const ANIMAL_ORIGIN = ['Притулок', 'Розплідник', 'Приватний власник'];
 
 export const PET_CATEGORIES = [
   {
