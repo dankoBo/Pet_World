@@ -1,6 +1,6 @@
-import { Animal } from '../types'; // Імпортуйте типи, якщо у вас є типи для тварин
+import { Animal } from '../types';
 
-interface Filters {
+type Filters = {
     animalType: string;
     animalVariety: string;
     location: string;
@@ -34,23 +34,23 @@ export const filterAnimals = (animals: Animal[], filters: Filters, convertAgeToM
         const minPrice = filters.minPrice ? parseFloat(filters.minPrice) : null;
         const maxPrice = filters.maxPrice ? parseFloat(filters.maxPrice) : null;
         const priceMatch = 
-        (minPrice === null || (price !== null && price >= minPrice)) &&
-        (maxPrice === null || (price !== null && price <= maxPrice));
+            (minPrice === null || (price !== null && price >= minPrice)) &&
+            (maxPrice === null || (price !== null && price <= maxPrice));
         const freeMatch = filters.free ? animal.free === true : true;
 
-        const animalAgeInMonths = convertAgeToMonths(parseInt(animal.animalAge), animal.ageUnit);
+        const animalAgeInMonths = animal.animalAge && animal.ageUnit
+            ? convertAgeToMonths(parseInt(animal.animalAge), animal.ageUnit)
+            : null;
+        const minAgeInMonths = filters.minAnimalAge && filters.minAgeUnit
+            ? convertAgeToMonths(parseInt(filters.minAnimalAge), filters.minAgeUnit)
+            : null;
+        const maxAgeInMonths = filters.maxAnimalAge && filters.maxAgeUnit
+            ? convertAgeToMonths(parseInt(filters.maxAnimalAge), filters.maxAgeUnit)
+            : null;
 
-        const minAgeInMonths = filters.minAnimalAge
-        ? convertAgeToMonths(parseInt(filters.minAnimalAge), filters.minAgeUnit)
-        : null;
-        const maxAgeInMonths = filters.maxAnimalAge
-        ? convertAgeToMonths(parseInt(filters.maxAnimalAge), filters.maxAgeUnit)
-        : null;
-
-        // Фільтрація по віку
-        const ageMatch =
-        (minAgeInMonths === null || animalAgeInMonths >= minAgeInMonths) &&
-        (maxAgeInMonths === null || animalAgeInMonths <= maxAgeInMonths);
+        const ageMatch = animalAgeInMonths !== null &&
+            (minAgeInMonths === null || animalAgeInMonths >= minAgeInMonths) &&
+            (maxAgeInMonths === null || animalAgeInMonths <= maxAgeInMonths);
 
         const genderMatch = filters.gender ? animal.gender === filters.gender : true;
         const healthMatch =

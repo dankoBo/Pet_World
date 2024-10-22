@@ -3,5 +3,6 @@
 
 .advertisement-page-wrapper {
     $width-app: 1440px;
+    padding: 20px 0 40px;
     @include wrapper-bg;
 }

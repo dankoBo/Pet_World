@@ -5,6 +5,10 @@
     padding: 20px 0;
 }
 
+.advertisement-title {
+    @include text-sizes($font-size-m-4, $line-height-1, $letter-spacing-1, 500);
+}
+
 .advertisement {
     display: flex;
     justify-content: space-between;
@@ -15,10 +19,6 @@
         flex-direction: column;
         gap: 14px;
         margin-top: 20px;
-    }
-
-    &__title {
-        @include text-sizes($font-size-m-4, $line-height-1, $letter-spacing-1, 500);
     }
 
     &__animals {

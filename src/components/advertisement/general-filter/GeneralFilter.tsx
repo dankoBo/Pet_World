@@ -36,7 +36,7 @@ const GeneralFilters: React.FC<GeneralFiltersProps> = ({
 }) => {
     return (
         <>
-            <FormControl fullWidth variant="outlined">
+            <FormControl>
                 <InputLabel>Вид тварини</InputLabel>
                 <Select
                     labelId="animal-type-label"
@@ -53,7 +53,7 @@ const GeneralFilters: React.FC<GeneralFiltersProps> = ({
                 </Select>
             </FormControl>
 
-            <FormControl fullWidth variant="outlined">
+            <FormControl>
                 <InputLabel>Різновид</InputLabel>
                 <Select
                     labelId="animal-variety-label"
@@ -70,7 +70,7 @@ const GeneralFilters: React.FC<GeneralFiltersProps> = ({
                 </Select>
             </FormControl>
 
-            <FormControl fullWidth variant="outlined">
+            <FormControl>
                 <InputLabel>Локація</InputLabel>
                 <Select
                     labelId="location-label"
@@ -87,7 +87,7 @@ const GeneralFilters: React.FC<GeneralFiltersProps> = ({
                 </Select>
             </FormControl>
 
-            <FormControl fullWidth variant="outlined">
+            <FormControl>
                 <InputLabel>Походження</InputLabel>
                 <Select
                     labelId="pet-origin-label"

@@ -6,7 +6,7 @@ import LoginPage from './pages/login-page/LoginPage';
 import UserProfilePage from './pages/user-profile-page/UserProfilePage';
 import PetProfilePage from './pages/pet-profile-page/PetProfilePage';
 import AddPetPage from './pages/add-pet-page/AddPetPage';
-import Advertisement from './pages/advertisement-page/AdvertisementPage';
+import AdvertisementPage from './pages/advertisement-page/AdvertisementPage';
 import Footer from './components/footer/Footer';
 import { Routes, Route } from 'react-router-dom';
 import { onAuthStateChanged, User } from 'firebase/auth';
@@ -39,7 +39,7 @@ function App() {
                         path="/add-pet"
                         element={user ? <AddPetPage /> : <RegistrationPage />}
                     />
-                    <Route path="/advertisement" element={<Advertisement />} />
+                    <Route path="/advertisement" element={<AdvertisementPage />} />
                 </Routes>
             </main>
             <Footer />

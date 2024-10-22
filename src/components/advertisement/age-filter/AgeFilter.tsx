@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, FormControl, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
-interface AgeFilterProps {
+type AgeFilterProps = {
     filters: {
         minAnimalAge: string;
         maxAnimalAge: string;
@@ -19,7 +19,7 @@ const AgeFilter: React.FC<AgeFilterProps> = ({
 }) => {
     return (
         <div>
-            <label htmlFor="">Вік</label>
+            <label>Вік</label>
             <div className="form-age-control">
                 <TextField
                     value={filters.minAnimalAge}
@@ -27,13 +27,11 @@ const AgeFilter: React.FC<AgeFilterProps> = ({
                     fullWidth
                     type="number"
                     label="Min"
-                    variant="outlined"
                     margin="normal"
                     onChange={handleTextFieldChange}
                 />
-                <FormControl variant="outlined" sx={{ width: '140px', marginTop: '10px' }}>
+                <FormControl sx={{ width: '140px', marginTop: '10px' }}>
                     <Select
-                        labelId="age-unit-label"
                         name="minAgeUnit"
                         value={filters.minAgeUnit}
                         onChange={handleSelectChange}
@@ -50,13 +48,11 @@ const AgeFilter: React.FC<AgeFilterProps> = ({
                     fullWidth
                     type="number"
                     label="Max"
-                    variant="outlined"
                     margin="normal"
                     onChange={handleTextFieldChange}
                 />
-                <FormControl variant="outlined" sx={{ width: '140px', marginTop: '10px' }}>
+                <FormControl sx={{ width: '140px', marginTop: '10px' }}>
                     <Select
-                        labelId="max-age-unit-label"
                         name="maxAgeUnit"
                         value={filters.maxAgeUnit}
                         onChange={handleSelectChange}
