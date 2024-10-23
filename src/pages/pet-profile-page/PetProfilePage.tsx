@@ -112,7 +112,7 @@ const PetProfilePage = () => {
                 <div className="details">
                     <div className="details__header">
                         <p className="details__adName">{petData.adName}</p>
-                        <p className="details__price">₴ {petData.price}</p>
+                        <p className="details__price">₴ {petData.price || '0'}</p>
                     </div>
                     <div className="details-contacts">
                         <h2 className="section-title">Контакти</h2>

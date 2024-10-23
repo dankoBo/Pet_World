@@ -18,33 +18,34 @@ type PetData = {
 const MainPage = () => {
     const [pets, setPets] = useState<PetData[]>([]);
 
-    useEffect(() => {
-        const fetchPets = async () => {
-            try {
-                const petsQuery = query(
-                    collection(db, 'animals'),
-                    orderBy('createdAt', 'desc'),
-                    limit(4)
-                );
-                const querySnapshot = await getDocs(petsQuery);
-                const animals = querySnapshot.docs.map(doc => {
-                    const data = doc.data();
-                    return {
-                        id: doc.id,
-                        imageUrl: data.imageUrl || '',
-                        adName: data.adName || '',
-                        location: data.location || '',
-                        gender: data.gender || '',
-                        animalAge: data.animalAge || '',
-                        price: data.price || 0,
-                    } as PetData;
-                });
-                setPets(animals);
-            } catch (error) {
-                console.error("Помилка при отриманні тварин:", error);
-            }
-        };
+    const fetchPets = async () => {
+        try {
+            const petsQuery = query(
+                collection(db, 'animals'),
+                orderBy('createdAt', 'desc'),
+                limit(4)
+            );
+            const querySnapshot = await getDocs(petsQuery);
+            const animals = querySnapshot.docs.map(doc => {
+                const data = doc.data();
+                return {
+                    id: doc.id,
+                    imageUrl: data.imageUrl || '',
+                    adName: data.adName || '',
+                    location: data.location || '',
+                    gender: data.gender || '',
+                    animalAge: data.animalAge || '',
+                    price: data.price || '0',
+                } as PetData;
+            });
+            
+            setPets(animals);
+        } catch (error) {
+            console.error("Помилка при отриманні тварин:", error);
+        }
+    };
 
+    useEffect(() => {
         fetchPets();
     }, []);
 
@@ -64,13 +65,13 @@ const MainPage = () => {
                             pets.map(pet => (
                                 <PetCard
                                     key={pet.id}
+                                    id={pet.id}
                                     adName={pet.adName}
                                     location={pet.location}
                                     gender={pet.gender}
                                     animalAge={pet.animalAge}
                                     price={pet.price}
                                     imageUrl={pet.imageUrl}
-                                    id={pet.id}
                                 />
                             ))
                         ) : (

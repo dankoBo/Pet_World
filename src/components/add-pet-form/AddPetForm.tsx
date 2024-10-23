@@ -11,7 +11,7 @@ import { getAuth } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import { serverTimestamp } from 'firebase/firestore';
 
 const uploadImageToStorage = async (
@@ -68,7 +68,7 @@ const AddPetForm = () => {
 
             try {
                 await addDoc(collection(db, 'animals'), {
-                    id: uuidv4(),
+                    // id: uuidv4(),
                     createdAt: serverTimestamp(),
                     ...values,
                     imageUrl,
