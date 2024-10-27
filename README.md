@@ -2,7 +2,6 @@
 
  - Language: TypeScript;
  - Libraries: React, MUI, SCSS, react-icons;
- - Utilities: uuid;
 
 **УВАГА**
 Деякий функціонал у проекті не був виконаний.
