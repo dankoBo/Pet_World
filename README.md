@@ -3,10 +3,5 @@
  - Language: TypeScript;
  - Libraries: React, MUI, SCSS, react-icons;
 
-**УВАГА**
-Деякий функціонал у проекті не був виконаний.
-
-
-Запустити на локальному сервері:
- - yarn
- - yarn dev
+This project was created as part of a IT Marathon 4.0 by EPAM Campus.
+Web application which allows to find a pet and/or find an owner for your pet. Registered and non-registered users can review published ads. Users can filter pets by several filters. Only registered users can publish an add. Registered users can manage personal information and addsin the own account.
