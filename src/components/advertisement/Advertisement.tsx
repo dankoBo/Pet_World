@@ -32,13 +32,12 @@ const Advertisement = () => {
             const querySnapshot = await getDocs(collection(db, 'animals'));
             const varietiesSet = new Set<string>();
             const locationsSet = new Set<string>();
-            const animalsList: Animal[] = [];
 
-            querySnapshot.forEach((doc) => {
+            const animalsList = querySnapshot.docs.map((doc) => {
                 const data = doc.data();
                 if (data.animalVariety) varietiesSet.add(data.animalVariety);
                 if (data.location) locationsSet.add(data.location);
-                animalsList.push({ id: doc.id, ...data });
+                return { id: doc.id, ...data };
             });
 
             setAnimalVarieties(Array.from(varietiesSet));

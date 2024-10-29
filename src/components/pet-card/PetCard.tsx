@@ -15,7 +15,6 @@ type PetCardProps = {
 }
 
 const PetCard: React.FC<PetCardProps> = ({ adName, location, gender, animalAge, price, imageUrl, id }) => {
-    console.log('PetCard ID:', id);
     return (
         <Link to={`/pet-profile/${id}`} className="pet-card">
             <img

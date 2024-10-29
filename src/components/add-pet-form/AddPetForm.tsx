@@ -11,8 +11,8 @@ import { getAuth } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
-// import { v4 as uuidv4 } from 'uuid';
 import { serverTimestamp } from 'firebase/firestore';
+// import { v4 as uuidv4 } from 'uuid';
 
 const uploadImageToStorage = async (
     file: File | null
