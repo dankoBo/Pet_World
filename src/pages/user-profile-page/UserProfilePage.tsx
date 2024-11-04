@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import PetCard from '../../components/pet-card/PetCard';
 import Button from '../../ui/button/Button';
+import UserProfileInfo from '../../components/user-profile-info/UserProfileInfo'
 
 type UserData = {
     firstName: string;
@@ -91,50 +92,7 @@ const UserProfilePage = () => {
                                 <Button className='warning' onClick={handleLogout}>Вийти з акаунту</Button>
                             </div>
                         </div>
-                        <div className="user-profile__data">
-                            <div className='user-profile__data-wrapper'>
-                                <div className="user-profile__details">
-                                    <div className="user-profile__avatar-wrapper">
-                                        <img
-                                            src="/assets/icons/sprite-icons-small.svg#location"
-                                            alt="Аватар акаунта"
-                                            width="32"
-                                            height="32"
-                                        />
-                                    </div>
-                                    Локація
-                                </div>
-                                <p>{userData.location}</p>
-                            </div>
-                            <div className='user-profile__data-wrapper'>
-                                <div className="user-profile__details">
-                                    <div className="user-profile__avatar-wrapper">
-                                        <img
-                                            src="/assets/icons/sprite-icons-small.svg#phone"
-                                            alt="Аватар акаунта"
-                                            width="32"
-                                            height="32"
-                                        />
-                                    </div>
-                                    Номер телефону
-                                </div>
-                                <p>{userData.phone}</p>
-                            </div>
-                            <div className='user-profile__data-wrapper'>
-                                <div className="user-profile__details">
-                                    <div className="user-profile__avatar-wrapper">
-                                        <img
-                                            src="/assets/icons/sprite-icons-small.svg#mail"
-                                            alt="Аватар акаунта"
-                                            width="32"
-                                            height="32"
-                                        />
-                                    </div>
-                                    Імейл
-                                </div>
-                                <p>{auth.currentUser?.email}</p>
-                            </div>
-                        </div>
+                        <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} />
                     </>
                 ) : (
                     <p>Завантаження даних...</p>

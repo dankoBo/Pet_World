@@ -40,7 +40,7 @@ const PetCard: React.FC<PetCardProps> = ({ adName, location, gender, animalAge, 
                         {animalAge}
                     </li>
                 </ul>
-            <p className="price">₴ {price}</p>
+                <p className="price">₴ {price}</p>
             </div>
         </Link>
     );

@@ -17,26 +17,6 @@
         border-bottom: 2px solid rgba(199, 176, 231, 0.47);
     }
 
-    &__data {
-        width: 535px;
-        display: flex;
-        flex-direction: column;
-        gap: 17px;
-    }
-
-    &__data-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 2px solid rgba(199, 176, 231, 0.12);
-    }
-
-    &__details {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
     &__manage {
         display: flex;
         align-items: center;

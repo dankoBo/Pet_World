@@ -25,4 +25,4 @@ export type Animal = {
     cynology?: boolean;
     imageUrl?: string;
     adName?: string;
-}
+};
