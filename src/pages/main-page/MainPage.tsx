@@ -4,6 +4,7 @@ import PetCard from '../../components/pet-card/PetCard';
 import PetCategories from '../../components/pet-categories/PetCategories';
 import { db } from '../../firebase';
 import { collection, getDocs, orderBy, limit, query } from 'firebase/firestore';
+import Loader from '../../ui/loader/Loader';
 
 type PetData = {
     id: string;
@@ -75,7 +76,7 @@ const MainPage = () => {
                                 />
                             ))
                         ) : (
-                            <p>Немає доступних тваринок.</p>
+                            <Loader />
                         )}
                     </div>
                 </section>

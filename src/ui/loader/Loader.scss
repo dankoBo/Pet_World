@@ -1,0 +1,45 @@
+$bar-width: 10px;
+$bar-height: 30px;
+$bar-color: #b27bff;
+$bar-radius: 5px;
+$bar-spacing: 20px;
+$animation-duration: 1.5s;
+$bars-count: 9;
+
+.loader {
+    position: relative;
+    width: $bars-count * $bar-spacing;
+    height: 100px;
+    margin: 50px auto;
+
+    @for $i from 1 through $bars-count {
+        .bar#{$i} {
+            position: absolute;
+            width: $bar-width;
+            height: $bar-height;
+            background-color: $bar-color;
+            border-radius: $bar-radius;
+            left: ($i - 1) * $bar-spacing;
+            animation: loader-animation
+                $animation-duration
+                ease-in-out
+                infinite;
+            animation-delay: ($i - 1) * 0.15s;
+        }
+    }
+}
+
+@keyframes loader-animation {
+    0% {
+        height: $bar-height;
+        transform: translate(0, 0);
+    }
+    50% {
+        height: 70px;
+        transform: translate(0, 35px);
+    }
+    100% {
+        height: $bar-height;
+        transform: translate(0, 0);
+    }
+}

@@ -3,19 +3,20 @@ import { useState, useEffect } from 'react';
 import { ANIMAL_TYPES, ANIMAL_ORIGIN } from '../../app.config';
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import PetCard from '../../components/pet-card/PetCard';
 import { SelectChangeEvent } from '@mui/material';
+import { filterAnimals } from '../../utils/filterForAnimals';
+import { Animal } from '../../types';
+import { initialFilters } from '../../filtersConfig';
+import PetCard from '../../components/pet-card/PetCard';
 import GeneralFilters from './general-filter/GeneralFilter';
 import PriceFilter from './price-filter/PriceFilter';
 import AgeFilter from './age-filter/AgeFilter';
 import GenderFilter from './gender-filter/GenderFilter';
 import HealthFilter from './health-filter/HealthFilter';
 import DocumentsFilter from './documents-filter/DocumentsFilter';
-import { filterAnimals } from '../../utils/filterForAnimals';
 import Pagination from '@mui/material/Pagination';
 import Button from '../../ui/button/Button';
-import { Animal } from '../../types';
-import { initialFilters } from '../../filtersConfig';
+import Loader from '../../ui/loader/Loader';
 
 const Advertisement = () => {
     const [animals, setAnimals] = useState<Animal[]>([]);
@@ -102,7 +103,10 @@ const Advertisement = () => {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentAnimals = filteredAnimals.slice(indexOfFirstItem, indexOfLastItem);
+    const currentAnimals = filteredAnimals.slice(
+        indexOfFirstItem,
+        indexOfLastItem
+    );
 
     const handlePageChange = (_: React.ChangeEvent<unknown>, value: number) => {
         setCurrentPage(value);
@@ -110,59 +114,56 @@ const Advertisement = () => {
 
     return (
         <>
-            {loading ? (
-                <div>Завантаження...</div>
-            ) : (
-                <>
-                    <h2>Фільтри</h2>
-                    <div className="advertisement">
-                        <section className="advertisement__filters">
-                            <GeneralFilters
-                                filters={filters}
-                                handleSelectChange={handleSelectChange}
-                                ANIMAL_TYPES={ANIMAL_TYPES}
-                                animalVarieties={animalVarieties}
-                                locations={locations}
-                                ANIMAL_ORIGIN={ANIMAL_ORIGIN}
-                            />
-                            <AgeFilter
-                                filters={filters}
-                                handleTextFieldChange={handleTextFieldChange}
-                                handleSelectChange={handleSelectChange}
-                            />
-                            <PriceFilter
-                                filters={filters}
-                                handleTextFieldChange={handleTextFieldChange}
-                                handleCheckboxChange={handleCheckboxChange}
-                            />
-                            <GenderFilter
-                                filters={filters}
-                                handleSelectChange={handleSelectChange}
-                            />
-                            <HealthFilter
-                                filters={filters}
-                                handleCheckboxChange={handleCheckboxChange}
-                            />
-                            <DocumentsFilter
-                                filters={filters}
-                                handleCheckboxChange={handleCheckboxChange}
-                            />
-                            <div className="advertisement__filter-actions">
-                                <Button
-                                    className="filter"
-                                    onClick={handleFilterApply}
-                                >
-                                    Застосувати фільтри
-                                </Button>
-                                <Button
-                                    className="filter"
-                                    onClick={resetFilters}
-                                >
-                                    Скинути фільтр
-                                </Button>
-                            </div>
-                        </section>
-                        <div className="advertisement-animals-pagination">
+            <>
+                <h2>Фільтри</h2>
+                <div className="advertisement">
+                    <section className="advertisement__filters">
+                        <GeneralFilters
+                            filters={filters}
+                            handleSelectChange={handleSelectChange}
+                            ANIMAL_TYPES={ANIMAL_TYPES}
+                            animalVarieties={animalVarieties}
+                            locations={locations}
+                            ANIMAL_ORIGIN={ANIMAL_ORIGIN}
+                        />
+                        <AgeFilter
+                            filters={filters}
+                            handleTextFieldChange={handleTextFieldChange}
+                            handleSelectChange={handleSelectChange}
+                        />
+                        <PriceFilter
+                            filters={filters}
+                            handleTextFieldChange={handleTextFieldChange}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
+                        <GenderFilter
+                            filters={filters}
+                            handleSelectChange={handleSelectChange}
+                        />
+                        <HealthFilter
+                            filters={filters}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
+                        <DocumentsFilter
+                            filters={filters}
+                            handleCheckboxChange={handleCheckboxChange}
+                        />
+                        <div className="advertisement__filter-actions">
+                            <Button
+                                className="filter"
+                                onClick={handleFilterApply}
+                            >
+                                Застосувати фільтри
+                            </Button>
+                            <Button className="filter" onClick={resetFilters}>
+                                Скинути фільтр
+                            </Button>
+                        </div>
+                    </section>
+                    <div className="advertisement-animals-pagination">
+                        {loading ? (
+                            <Loader />
+                        ) : (
                             <section className="advertisement__animals">
                                 {currentAnimals.map((pet) => (
                                     <PetCard
@@ -177,21 +178,21 @@ const Advertisement = () => {
                                     />
                                 ))}
                             </section>
-                            <div className="pagination">
-                                <Pagination
-                                    count={Math.ceil(
-                                        filteredAnimals.length / itemsPerPage
-                                    )}
-                                    page={currentPage}
-                                    onChange={handlePageChange}
-                                    variant="outlined"
-                                    shape="rounded"
-                                />
-                            </div>
+                        )}
+                        <div className="pagination">
+                            <Pagination
+                                count={Math.ceil(
+                                    filteredAnimals.length / itemsPerPage
+                                )}
+                                page={currentPage}
+                                onChange={handlePageChange}
+                                variant="outlined"
+                                shape="rounded"
+                            />
                         </div>
                     </div>
-                </>
-            )}
+                </div>
+            </>
         </>
     );
 };
