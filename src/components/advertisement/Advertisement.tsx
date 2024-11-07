@@ -161,24 +161,26 @@ const Advertisement = () => {
                         </div>
                     </section>
                     <div className="advertisement-animals-pagination">
-                        {loading ? (
-                            <Loader />
-                        ) : (
-                            <section className="advertisement__animals">
-                                {currentAnimals.map((pet) => (
-                                    <PetCard
-                                        key={pet.id}
-                                        adName={pet.adName || ''}
-                                        location={pet.location || ''}
-                                        gender={pet.gender || ''}
-                                        animalAge={pet.animalAge || ''}
-                                        price={pet.price || '0'}
-                                        imageUrl={pet.imageUrl || ''}
-                                        id={pet.id}
-                                    />
-                                ))}
-                            </section>
-                        )}
+                        <div className="advertisement-animals-container">
+                            {loading ? (
+                                <Loader />
+                            ) : (
+                                <section className="advertisement__animals">
+                                    {currentAnimals.map((pet) => (
+                                        <PetCard
+                                            key={pet.id}
+                                            adName={pet.adName || ''}
+                                            location={pet.location || ''}
+                                            gender={pet.gender || ''}
+                                            animalAge={pet.animalAge || ''}
+                                            price={pet.price || '0'}
+                                            imageUrl={pet.imageUrl || ''}
+                                            id={pet.id}
+                                        />
+                                    ))}
+                                </section>
+                            )}
+                        </div>
                         <div className="pagination">
                             <Pagination
                                 count={Math.ceil(

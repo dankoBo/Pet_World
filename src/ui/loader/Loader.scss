@@ -6,6 +6,13 @@ $bar-spacing: 20px;
 $animation-duration: 1.5s;
 $bars-count: 9;
 
+.loader-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .loader {
     position: relative;
     width: $bars-count * $bar-spacing;

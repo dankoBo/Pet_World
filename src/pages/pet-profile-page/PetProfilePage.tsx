@@ -7,6 +7,7 @@ import PetDetails from '../../ui/pet-details/PetDetails';
 import HealthDocuments from '../../ui/health-documents/HealthDocuments';
 import Button from '../../ui/button/Button';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../ui/loader/Loader';
 
 type PetData = {
     userId?: string;
@@ -92,7 +93,7 @@ const PetProfilePage = () => {
     };
 
     if (!petData) {
-        return <p>Завантаження даних...</p>;
+        return <Loader />;
     }
 
     return (
