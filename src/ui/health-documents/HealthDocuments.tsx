@@ -23,7 +23,7 @@ const HealthDocuments: React.FC<HealthDocumentsProps> = ({ icon, title, statuses
                         key={index}
                         className={`status-button ${status.value ? 'status-button--active' : 'status-button--inactive'}`}
                     >
-                        {status.label}: {status.value}
+                        {status.label} {status.value}
                     </span>
                 ))}
             </div>

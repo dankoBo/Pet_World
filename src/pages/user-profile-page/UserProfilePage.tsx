@@ -9,6 +9,7 @@ import PetCard from '../../components/pet-card/PetCard';
 import Button from '../../ui/button/Button';
 import UserProfileInfo from '../../components/user-profile-info/UserProfileInfo';
 import Loader from '../../ui/loader/Loader';
+import UserUpdateForm from '../../components/user-update-form/UserUpdateForm';
 
 type UserData = {
     firstName: string;
@@ -94,6 +95,7 @@ const UserProfilePage = () => {
                             </div>
                         </div>
                         <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} />
+                        <UserUpdateForm />
                     </>
                 ) : (
                     <Loader />
