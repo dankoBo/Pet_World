@@ -5,27 +5,39 @@ import { useFormik } from 'formik';
 import MaskedInput from 'react-text-mask';
 import { userUpdateSchema } from '../../validation/userUpdateValidation';
 
+type UserUpdateValues = {
+    firstName: string;
+    lastName: string;
+    location: string;
+    email: string;
+    phone: string;
+}
 
+type UserInfoProps = {
+    userInfoData: UserUpdateValues | null;
+    email: string | null;
+    userId: string | null;
+};
 
-
-const UserUpdateForm = () => {
+const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }) => {
+    const inputMask = ['+', '3', '8', ' ', '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]
     const updateUserInfo = () => {
         console.log('user data updated');
     }
 
-    const formik = useFormik({
+    const formik = useFormik<UserUpdateValues>({
         initialValues: {
-            firstName: '',
-            lastName: '',
-            location: '',
-            email: '',
-            phone: '+38 () - -',
-            password: '',
-            confirmPassword: '',
+            firstName: userInfoData?.firstName || '',
+            lastName: userInfoData?.lastName || '',
+            location: userInfoData?.location || '',
+            email: email || '',
+            phone: userInfoData?.phone || '',
         },
         validationSchema: userUpdateSchema,
         onSubmit: async (values) => {
-            // await updateUserInfo(values);
+            await updateUserInfo(values);
+            console.log(userId);
+            
         },
     });
 
@@ -87,7 +99,7 @@ const UserUpdateForm = () => {
                 helperText={formik.touched.email && formik.errors.email}
             />
             <MaskedInput
-                mask={['+', '3', '8', ' ', '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
+                mask={inputMask}
                 value={formik.values.phone}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -105,8 +117,8 @@ const UserUpdateForm = () => {
                     />
                 )}
             />
-            <Button type="submit" className="button" disabled={ !formik.isValid || !isFormFilled()}>
-                Зареєструватися
+            <Button type="submit" className="button" disabled={!formik.isValid || !isFormFilled()}>
+                Зберегти
             </Button>
         </form>
     );

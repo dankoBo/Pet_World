@@ -1,13 +1,9 @@
 import './UserProfilePage.scss'
 import { useEffect, useState } from 'react';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
-import { useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
 import PetCard from '../../components/pet-card/PetCard';
-import Button from '../../ui/button/Button';
-import UserProfileInfo from '../../components/user-profile-info/UserProfileInfo';
+// import UserProfileInfo from '../../components/user-profile-info/UserProfileInfo';
 import Loader from '../../ui/loader/Loader';
 import UserUpdateForm from '../../components/user-update-form/UserUpdateForm';
 
@@ -15,6 +11,7 @@ type UserData = {
     firstName: string;
     lastName: string;
     location: string;
+    email: string;
     phone: string;
 }
 
@@ -31,7 +28,6 @@ type PetData = {
 const UserProfilePage = () => {
     const [userData, setUserData] = useState<UserData | null>(null);
     const [userPets, setUserPets] = useState<PetData[]>([]);
-    const navigate = useNavigate();
     const userId = auth.currentUser?.uid;
 
     useEffect(() => {
@@ -71,31 +67,13 @@ const UserProfilePage = () => {
         fetchUserData();
     }, [userId]);
 
-    const handleLogout = async () => {
-        try {
-            await signOut(auth);
-            navigate('/');
-        } catch (error) {
-            console.error("Помилка при виході з акаунту:", error);
-        }
-    };
-
     return (
         <div className="user-profile-wrapper">
             <section className="user-profile app-container">
                 {userData ? (
                     <>
-                        <div className="user-profile__name">
-                            <h2 className="user-profile__name-title">
-                                {userData.firstName} {userData.lastName}
-                            </h2>
-                            <div className='user-profile__manage'>
-                                <a href="#">Редагувати дані</a>
-                                <Button className='warning' onClick={handleLogout}>Вийти з акаунту</Button>
-                            </div>
-                        </div>
-                        <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} />
-                        <UserUpdateForm />
+                        {/* <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} /> */}
+                        <UserUpdateForm userInfoData={userData} email={auth.currentUser?.email || null} userId={userId || null} />
                     </>
                 ) : (
                     <Loader />

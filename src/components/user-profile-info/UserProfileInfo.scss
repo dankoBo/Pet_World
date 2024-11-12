@@ -7,6 +7,20 @@
     flex-direction: column;
     gap: 17px;
     
+    &__name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 48px 0 17px;
+        margin-bottom: 37px;
+        border-bottom: 2px solid rgba(199, 176, 231, 0.47);
+    }
+
+    &__manage {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
 
     &__wrapper {
         display: flex;
