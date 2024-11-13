@@ -73,7 +73,7 @@
 
     &.warning {
         width: 180px;
-        padding: 10px 24px;
+        padding: 8px 24px;
         background-color: $color-red-3;
 
         &:hover {
@@ -83,5 +83,11 @@
 
     &.filter {
         padding: 5px 14px;
+    }
+
+    &.edit {
+        width: 180px;
+        padding: 8px 24px;
+        background-color: $color-green-1;
     }
 }

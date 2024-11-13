@@ -1,9 +1,10 @@
 import './UserProfileInfo.scss';
-import Button from '../../ui/button/Button';
+import { useDispatch} from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
+import Button from '../../ui/button/Button';
 import { auth } from '../../firebase';
-
+import { startUpdateInfo } from '../../store/userUpdateSlice';
 
 type UserData = {
     firstName: string;
@@ -22,6 +23,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
     email,
 }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogout = async () => {
         try {
@@ -32,6 +34,10 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
         }
     };
 
+    const editUserInfo = () => {
+        dispatch(startUpdateInfo())
+    };
+
     return (
         <>
             <div className="user-profile-info__name">
@@ -39,7 +45,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
                     {userData?.firstName} {userData?.lastName}
                 </h2>
                 <div className='user-profile-info__manage'>
-                    <a href="#">Редагувати дані</a>
+                    <Button className='edit' onClick={editUserInfo} >Редагувати дані</Button>
                     <Button className='warning' onClick={handleLogout}>Вийти з акаунту</Button>
                 </div>
             </div>

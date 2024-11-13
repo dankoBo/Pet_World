@@ -1,11 +1,13 @@
-import './UserProfilePage.scss'
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { doc, getDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import PetCard from '../../components/pet-card/PetCard';
-// import UserProfileInfo from '../../components/user-profile-info/UserProfileInfo';
+import UserProfileInfo from '../../components/user-profile-info/UserProfileInfo';
 import Loader from '../../ui/loader/Loader';
 import UserUpdateForm from '../../components/user-update-form/UserUpdateForm';
+import type { RootState } from '../../store/store';
+import './UserProfilePage.scss';
 
 type UserData = {
     firstName: string;
@@ -29,6 +31,7 @@ const UserProfilePage = () => {
     const [userData, setUserData] = useState<UserData | null>(null);
     const [userPets, setUserPets] = useState<PetData[]>([]);
     const userId = auth.currentUser?.uid;
+    const isUpdating = useSelector((state: RootState) => state.user.isUpdating);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -72,8 +75,13 @@ const UserProfilePage = () => {
             <section className="user-profile app-container">
                 {userData ? (
                     <>
-                        {/* <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} /> */}
-                        <UserUpdateForm userInfoData={userData} email={auth.currentUser?.email || null} userId={userId || null} />
+                        {!isUpdating ? (
+                            <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} />
+                        ) : (
+                            <UserUpdateForm userInfoData={userData} email={auth.currentUser?.email || null} userId={userId || null} />
+                        )}
+                        {/* <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} />
+                        <UserUpdateForm userInfoData={userData} email={auth.currentUser?.email || null} userId={userId || null} /> */}
                     </>
                 ) : (
                     <Loader />

@@ -8,6 +8,8 @@ export const ERROR_MESSAGES = {
 export const ANIMAL_TYPES = ['Собаки', 'Коти', 'Гризуни', 'Риби', 'Птахи', 'Рептилії', 'Інші'];
 export const ANIMAL_ORIGIN = ['Притулок', 'Розплідник', 'Приватний власник'];
 
+export const inputMask = ['+', '3', '8', ' ', '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
+
 export const PET_CATEGORIES = [
     {
         amount: 150,

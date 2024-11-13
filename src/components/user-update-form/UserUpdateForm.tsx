@@ -1,9 +1,14 @@
-import './UserUpdateForm.scss';
 import { TextField } from '@mui/material';
-import Button from '../../ui/button/Button';
 import { useFormik } from 'formik';
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { useDispatch} from 'react-redux';
 import MaskedInput from 'react-text-mask';
 import { userUpdateSchema } from '../../validation/userUpdateValidation';
+import { stopUpdateInfo } from '../../store/userUpdateSlice';
+import { inputMask } from '../../app.config';
+import Button from '../../ui/button/Button';
+import './UserUpdateForm.scss';
 
 type UserUpdateValues = {
     firstName: string;
@@ -11,7 +16,7 @@ type UserUpdateValues = {
     location: string;
     email: string;
     phone: string;
-}
+};
 
 type UserInfoProps = {
     userInfoData: UserUpdateValues | null;
@@ -20,10 +25,28 @@ type UserInfoProps = {
 };
 
 const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }) => {
-    const inputMask = ['+', '3', '8', ' ', '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]
-    const updateUserInfo = () => {
-        console.log('user data updated');
-    }
+    const dispatch = useDispatch();
+
+    const updateUserInfo = async (values: UserUpdateValues) => {
+        if (userId) {
+            const userDocRef = doc(db, "users", userId);
+
+            try {
+                await updateDoc(userDocRef, {
+                    firstName: values.firstName,
+                    lastName: values.lastName,
+                    location: values.location,
+                    email: values.email,
+                    phone: values.phone,
+                });
+                console.log("User data updated successfully");
+            } catch (error) {
+                console.error("Error updating user data:", error);
+            }
+        } else {
+            console.error("User ID is not defined");
+        }
+    };
 
     const formik = useFormik<UserUpdateValues>({
         initialValues: {
@@ -36,10 +59,13 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
         validationSchema: userUpdateSchema,
         onSubmit: async (values) => {
             await updateUserInfo(values);
-            console.log(userId);
-            
+            dispatch(stopUpdateInfo());
         },
     });
+
+    const cancelUserUpdate = () => {
+        dispatch(stopUpdateInfo());
+    }
 
     const isFormFilled = () => {
         return Object.values(formik.values).every(value => value.trim() !== '');
@@ -117,9 +143,14 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
                     />
                 )}
             />
-            <Button type="submit" className="button" disabled={!formik.isValid || !isFormFilled()}>
-                Зберегти
-            </Button>
+            <div className="user-update-form__controls">
+                <Button type="submit" className="button" disabled={!formik.isValid || !isFormFilled()}>
+                    Зберегти
+                </Button>
+                <Button className="warning" onClick={cancelUserUpdate} disabled={!formik.isValid || !isFormFilled()}>
+                    Скасувати
+                </Button>
+            </div>
         </form>
     );
 };

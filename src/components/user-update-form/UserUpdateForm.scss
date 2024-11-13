@@ -4,4 +4,9 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    &__controls {
+        display: flex;
+        gap: 10px;
+    }
 }
