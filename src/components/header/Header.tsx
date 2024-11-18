@@ -1,6 +1,6 @@
-import './Header.scss';
-import Button from '../../ui/button/Button';
 import { Link } from 'react-router-dom';
+import Button from '../../ui/button/Button';
+import './Header.scss';
 
 const Header = () => {
     return (
@@ -18,9 +18,7 @@ const Header = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/advertisement"
-                                        className="nav-header__link-ads"
-                                    >
+                                    <Link to="/advertisement" className="nav-header__link-ads">
                                         Оголошення
                                     </Link>
                                 </li>
@@ -30,16 +28,11 @@ const Header = () => {
                             <ul className="nav-header__side-links">
                                 <li>
                                     <Link to="/add-pet">
-                                        <Button className="add">
-                                            Додати оголошення
-                                        </Button>
+                                        <Button className="add">Додати оголошення</Button>
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link
-                                        className="nav-header__link-profile"
-                                        to="/user-profile"
-                                    >
+                                    <Link className="nav-header__link-profile" to="/user-profile">
                                         <div className="nav-header__avatar-wrapper">
                                             <img
                                                 src="/assets/icons/sprite-icons-small.svg#avatar-placeholder"

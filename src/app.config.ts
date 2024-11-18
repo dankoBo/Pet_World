@@ -1,8 +1,8 @@
 export const ERROR_MESSAGES = {
-  somethingWentWrong: 'Щось пішло не так',
-  cantLoadNewestAds: 'Не вдалось загрузити найновіші повідомлення.',
-  cantLoadPropertyDefinitions: 'Не вдалось загрузити список властивостей.',
-  cantLoadFilteredAds: 'Не вдалось загрузити список відфільтрованих оголошень.',
+    somethingWentWrong: 'Щось пішло не так',
+    cantLoadNewestAds: 'Не вдалось загрузити найновіші повідомлення.',
+    cantLoadPropertyDefinitions: 'Не вдалось загрузити список властивостей.',
+    cantLoadFilteredAds: 'Не вдалось загрузити список відфільтрованих оголошень.',
 };
 
 export const ANIMAL_TYPES = ['Собаки', 'Коти', 'Гризуни', 'Риби', 'Птахи', 'Рептилії', 'Інші'];

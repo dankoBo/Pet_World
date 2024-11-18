@@ -1,5 +1,5 @@
-import './PetCategories.scss';
 import { PET_CATEGORIES } from '../../app.config';
+import './PetCategories.scss';
 
 type PetCategoriesProps = {
     className?: string;

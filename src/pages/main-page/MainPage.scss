@@ -3,15 +3,10 @@
 
 .main-page-wrapper {
     width: $width-app;
-    background: 
-        url('/src/assets/backgrounds/main-page-main-image.png') 572px -94px /
-            auto no-repeat,
-        url('src/assets/backgrounds/main-page-curved-arrow.svg') 0 492px / 224px
-            74px no-repeat,
-        url('src/assets/backgrounds/main-page-double-bubbles.svg') 12px 1084px /
-            84px 164px no-repeat,
-        url('src/assets/backgrounds/main-page-triple-bubbles.svg') right 0 bottom -32px /
-            168px 120px no-repeat;
+    background: url('/src/assets/backgrounds/main-page-main-image.png') 572px -94px / auto no-repeat,
+        url('src/assets/backgrounds/main-page-curved-arrow.svg') 0 492px / 224px 74px no-repeat,
+        url('src/assets/backgrounds/main-page-double-bubbles.svg') 12px 1084px / 84px 164px no-repeat,
+        url('src/assets/backgrounds/main-page-triple-bubbles.svg') right 0 bottom -32px / 168px 120px no-repeat;
 }
 
 .main-page {

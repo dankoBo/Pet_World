@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-    SelectChangeEvent
-} from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 
 interface GeneralFiltersProps {
     filters: {

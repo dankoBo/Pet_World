@@ -1,14 +1,19 @@
-import './HealthDocuments.scss'
+import './HealthDocuments.scss';
+
 type HealthDocumentsProps = {
     icon: string;
     title: string;
     statuses: { label: string; value: boolean }[];
-}
+};
 
-const HealthDocuments: React.FC<HealthDocumentsProps> = ({ icon, title, statuses }) => {
+const HealthDocuments: React.FC<HealthDocumentsProps> = ({
+    icon,
+    title,
+    statuses,
+}) => {
     return (
         <div className="health-documents">
-            <div className='status-block__header'>
+            <div className="status-block__header">
                 <img
                     src={`/assets/icons/sprite-icons-small.svg#${icon}`}
                     alt={`${title} icon`}
@@ -21,14 +26,18 @@ const HealthDocuments: React.FC<HealthDocumentsProps> = ({ icon, title, statuses
                 {statuses.map((status, index) => (
                     <span
                         key={index}
-                        className={`status-button ${status.value ? 'status-button--active' : 'status-button--inactive'}`}
+                        className={`status-button ${
+                            status.value
+                                ? 'status-button--active'
+                                : 'status-button--inactive'
+                        }`}
                     >
                         {status.label} {status.value}
                     </span>
                 ))}
             </div>
         </div>
-    )
+    );
 };
 
 export default HealthDocuments;

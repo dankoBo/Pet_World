@@ -1,4 +1,5 @@
-import './FormStepOne.scss';
+import { FormikProps } from 'formik';
+import { ANIMAL_TYPES } from '../../../app.config';
 import {
     TextField,
     FormControl,
@@ -10,11 +11,32 @@ import {
     RadioGroup,
     Radio,
 } from '@mui/material';
-import { ANIMAL_TYPES } from '../../../app.config';
-import { FormikProps } from 'formik';
+import './FormStepOne.scss';
+
+type FormValues = {
+    adName: string;
+    animalType: string;
+    price: string;
+    free: boolean;
+    location: string;
+    petOrigin: string;
+    animalVariety: string;
+    animalAge: string;
+    ageUnit: string;
+    gender: string;
+    chip: boolean;
+    sterilization: boolean;
+    parasite: boolean;
+    vaccination: boolean;
+    passport: boolean;
+    pedigree: boolean;
+    metrics: boolean;
+    cynology: boolean;
+    additional: string;
+}
 
 type FormStepOneProps = {
-    formik: FormikProps<any>;
+    formik: FormikProps<FormValues>;
 };
 
 const FormStepOne: React.FC<FormStepOneProps> = ({ formik }) => {

@@ -4,7 +4,7 @@ type PetDetailsProps = {
     icon: string;
     label: string;
     data: string;
-}
+};
 
 const PetDetails: React.FC<PetDetailsProps> = ({ icon, label, data }) => {
     return (
@@ -20,7 +20,7 @@ const PetDetails: React.FC<PetDetailsProps> = ({ icon, label, data }) => {
             </div>
             {data}
         </div>
-    )
+    );
 };
 
 export default PetDetails;

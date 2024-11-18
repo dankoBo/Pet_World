@@ -11,13 +11,9 @@ interface PriceFilterProps {
     handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const PriceFilter: React.FC<PriceFilterProps> = ({
-    filters,
-    handleTextFieldChange,
-    handleCheckboxChange,
-}) => {
+const PriceFilter: React.FC<PriceFilterProps> = ({ filters, handleTextFieldChange, handleCheckboxChange }) => {
     return (
-        <div className='advertisement-page__price-wrapper'>
+        <div className="advertisement-page__price-wrapper">
             <label htmlFor="">Ціна</label>
             <div className="advertisement__price-container">
                 <TextField
@@ -40,13 +36,7 @@ const PriceFilter: React.FC<PriceFilterProps> = ({
                 />
             </div>
             <FormControlLabel
-                control={
-                    <Checkbox
-                        checked={filters.free}
-                        onChange={handleCheckboxChange}
-                        name="free"
-                    />
-                }
+                control={<Checkbox checked={filters.free} onChange={handleCheckboxChange} name="free" />}
                 label="Безкоштовно"
             />
         </div>

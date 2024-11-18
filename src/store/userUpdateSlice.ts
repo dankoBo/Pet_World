@@ -8,7 +8,7 @@ const userUpdateSlice = createSlice({
             firstName: '',
             lastName: '',
             location: '',
-            phone: ''
+            phone: '',
         },
     },
     reducers: {
@@ -21,9 +21,10 @@ const userUpdateSlice = createSlice({
         updateUserData(state, action) {
             state.userInfo = { ...state.userInfo, ...action.payload };
             console.log(state.userInfo);
-        }
+        },
     },
 });
 
-export const { startUpdateInfo, stopUpdateInfo, updateUserData } = userUpdateSlice.actions;
+export const { startUpdateInfo, stopUpdateInfo, updateUserData } =
+    userUpdateSlice.actions;
 export default userUpdateSlice;

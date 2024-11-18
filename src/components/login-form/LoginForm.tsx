@@ -1,14 +1,13 @@
-import './LoginForm.scss';
 import { useState } from 'react';
-import { TextField, IconButton, InputAdornment } from '@mui/material';
-import { MdVisibility } from 'react-icons/md';
-import { MdVisibilityOff } from 'react-icons/md';
 import { useFormik } from 'formik';
-import { loginSchema } from '../../validation/loginValidation';
-import { auth } from '../../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
 import Button from '../../ui/button/Button';
+import { loginSchema } from '../../validation/loginValidation';
+import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
+import { TextField, IconButton, InputAdornment } from '@mui/material';
+import './LoginForm.scss';
 
 const LoginForm = () => {
     const [showPassword, setShowPassword] = useState(false);

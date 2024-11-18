@@ -1,5 +1,5 @@
-import './Footer.scss';
 import { Link } from 'react-router-dom';
+import './Footer.scss';
 
 export default function Footer() {
     return (
@@ -13,11 +13,7 @@ export default function Footer() {
                     </Link>
                     <address className="address">
                         <h3 className="header">Контакти</h3>
-                        <a
-                            className="link-footer"
-                            href="mailto:support@petworld.pet"
-                            target="_blank"
-                        >
+                        <a className="link-footer" href="mailto:support@petworld.pet" target="_blank">
                             support&#64;petworld.pet
                         </a>
                     </address>

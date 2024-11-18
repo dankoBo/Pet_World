@@ -1,5 +1,5 @@
-import './AddPetPage.scss';
 import AddPetForm from '../../components/add-pet-form/AddPetForm';
+import './AddPetPage.scss';
 
 const AddPetPage = () => {
     return (

@@ -1,10 +1,10 @@
-import './UserProfileInfo.scss';
-import { useDispatch} from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import Button from '../../ui/button/Button';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
+import Button from '../../ui/button/Button';
 import { startUpdateInfo } from '../../store/userUpdateSlice';
+import './UserProfileInfo.scss';
 
 type UserData = {
     firstName: string;
@@ -18,10 +18,7 @@ type UserProfileInfoProps = {
     email: string | null;
 };
 
-const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
-    userData,
-    email,
-}) => {
+const UserProfileInfo: React.FC<UserProfileInfoProps> = ({ userData, email }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -30,12 +27,12 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
             await signOut(auth);
             navigate('/');
         } catch (error) {
-            console.error("Помилка при виході з акаунту:", error);
+            console.error('Помилка при виході з акаунту:', error);
         }
     };
 
     const editUserInfo = () => {
-        dispatch(startUpdateInfo())
+        dispatch(startUpdateInfo());
     };
 
     return (
@@ -44,9 +41,13 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
                 <h2 className="user-profile__name-title">
                     {userData?.firstName} {userData?.lastName}
                 </h2>
-                <div className='user-profile-info__manage'>
-                    <Button className='edit' onClick={editUserInfo} >Редагувати дані</Button>
-                    <Button className='warning' onClick={handleLogout}>Вийти з акаунту</Button>
+                <div className="user-profile-info__manage">
+                    <Button className="edit" onClick={editUserInfo}>
+                        Редагувати дані
+                    </Button>
+                    <Button className="warning" onClick={handleLogout}>
+                        Вийти з акаунту
+                    </Button>
                 </div>
             </div>
             <div className="user-profile-info">
@@ -58,7 +59,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
                                 alt="Аватар акаунта"
                                 width="32"
                                 height="32"
-                                />
+                            />
                         </div>
                         Локація
                     </div>
@@ -72,7 +73,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
                                 alt="Аватар акаунта"
                                 width="32"
                                 height="32"
-                                />
+                            />
                         </div>
                         Номер телефону
                     </div>
@@ -86,7 +87,7 @@ const UserProfileInfo: React.FC<UserProfileInfoProps> = ({
                                 alt="Аватар акаунта"
                                 width="32"
                                 height="32"
-                                />
+                            />
                         </div>
                         Імейл
                     </div>

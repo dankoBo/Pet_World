@@ -1,12 +1,12 @@
+import { ChangeEvent, useRef, useState } from 'react';
 import './PhotoInput.scss';
-import { ChangeEvent, useRef, useState } from "react";
 
 type PhotoInputProps = {
     accept?: string;
     onImageSelect: (file: File) => void;
-}
+};
 
-const PhotoInput: React.FC<PhotoInputProps> = ({ accept = "image/*", onImageSelect }) => {
+const PhotoInput: React.FC<PhotoInputProps> = ({ accept = 'image/*', onImageSelect }) => {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -44,11 +44,7 @@ const PhotoInput: React.FC<PhotoInputProps> = ({ accept = "image/*", onImageSele
                 onClick={handleImageUploadClick}
             >
                 {imageFile ? (
-                <img
-                    src={URL.createObjectURL(imageFile)}
-                    alt="Uploaded"
-                    className="uploadedImage"
-                />
+                    <img src={URL.createObjectURL(imageFile)} alt="Uploaded" className="uploadedImage" />
                 ) : (
                     <span>Додайте або перетягніть файл</span>
                 )}
@@ -56,7 +52,7 @@ const PhotoInput: React.FC<PhotoInputProps> = ({ accept = "image/*", onImageSele
                     ref={fileInputRef}
                     type="file"
                     accept={accept}
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                     onChange={updateImage}
                 />
             </div>

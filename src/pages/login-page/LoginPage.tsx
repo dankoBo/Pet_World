@@ -1,6 +1,6 @@
-import './LoginPage.scss'; 
-import LoginForm from '../../components/login-form/LoginForm';
 import { Link } from 'react-router-dom';
+import LoginForm from '../../components/login-form/LoginForm';
+import './LoginPage.scss';
 
 const LoginPage = () => {
     return (
@@ -8,9 +8,7 @@ const LoginPage = () => {
             <section className="login">
                 <div className="login__title-wrapper">
                     <h2 className="login__title">Привіт знову!</h2>
-                    <h3 className="login__subtitle">
-                        Будь ласка, введіть свої дані, щоб увійти
-                    </h3>
+                    <h3 className="login__subtitle">Будь ласка, введіть свої дані, щоб увійти</h3>
                 </div>
                 <LoginForm />
                 <p className="registration-alternative">

@@ -1,21 +1,14 @@
 import { useEffect, useState } from 'react';
-import {
-    doc,
-    getDoc,
-    collection,
-    getDocs,
-    query,
-    where,
-} from 'firebase/firestore';
-import { auth, db } from '../../firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { doc, getDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import type { RootState } from '../../store/store';
 import PetCard from '../../components/pet-card/PetCard';
 import UserProfileInfo from '../../components/user-profile-info/UserProfileInfo';
-import Loader from '../../ui/loader/Loader';
 import UserUpdateForm from '../../components/user-update-form/UserUpdateForm';
-import type { RootState } from '../../store/store';
-import './UserProfilePage.scss';
-import { useDispatch, useSelector } from 'react-redux';
 import { updateUserData } from '../../store/userUpdateSlice';
+import Loader from '../../ui/loader/Loader';
+import { auth, db } from '../../firebase';
+import './UserProfilePage.scss';
 
 type PetData = {
     id: string;
@@ -48,10 +41,7 @@ const UserProfilePage = () => {
                     console.log('Користувача не знайдено!');
                 }
 
-                const petsQuery = query(
-                    collection(db, 'animals'),
-                    where('userId', '==', userId)
-                );
+                const petsQuery = query(collection(db, 'animals'), where('userId', '==', userId));
 
                 const querySnapshot = await getDocs(petsQuery);
                 const animals = querySnapshot.docs.map((doc) => {
@@ -81,10 +71,7 @@ const UserProfilePage = () => {
                 {userData ? (
                     <>
                         {!isUpdating ? (
-                            <UserProfileInfo
-                                userData={userData}
-                                email={auth.currentUser?.email || null}
-                            />
+                            <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} />
                         ) : (
                             <UserUpdateForm
                                 userInfoData={{

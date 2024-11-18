@@ -1,17 +1,16 @@
-import './AddPetForm.scss';
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import { addPetSchema } from '../../validation/addPetValidation';
+import { getAuth } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { db } from '../../firebase';
 import Button from '../../ui/button/Button';
 import FormStepOne from './form-step-one/FormStepOne';
 import FormStepTwo from './form-step-two/FormStepTwo';
 import FormStepThree from './form-step-three/FormStepThree';
-import { db } from '../../firebase';
-import { getAuth } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useNavigate } from 'react-router-dom';
-import { serverTimestamp } from 'firebase/firestore';
+import { addPetSchema } from '../../validation/addPetValidation';
+import './AddPetForm.scss';
 // import { v4 as uuidv4 } from 'uuid';
 
 const uploadImageToStorage = async (

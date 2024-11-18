@@ -17,13 +17,7 @@ const HealthFilter: React.FC<HealthFilterProps> = ({ filters, handleCheckboxChan
             <label className="form-label">Здоров'я</label>
             <div className="form-group">
                 <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={filters.chip}
-                            onChange={handleCheckboxChange}
-                            name="chip"
-                        />
-                    }
+                    control={<Checkbox checked={filters.chip} onChange={handleCheckboxChange} name="chip" />}
                     label="Чіп"
                 />
                 <FormControlLabel
@@ -37,22 +31,12 @@ const HealthFilter: React.FC<HealthFilterProps> = ({ filters, handleCheckboxChan
                     label="Стерилізація"
                 />
                 <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={filters.parasite}
-                            onChange={handleCheckboxChange}
-                            name="parasite"
-                        />
-                    }
+                    control={<Checkbox checked={filters.parasite} onChange={handleCheckboxChange} name="parasite" />}
                     label="Обробка від паразитів"
                 />
                 <FormControlLabel
                     control={
-                        <Checkbox
-                            checked={filters.vaccination}
-                            onChange={handleCheckboxChange}
-                            name="vaccination"
-                        />
+                        <Checkbox checked={filters.vaccination} onChange={handleCheckboxChange} name="vaccination" />
                     }
                     label="Вакцинація"
                 />

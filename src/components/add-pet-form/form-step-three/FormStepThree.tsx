@@ -1,14 +1,36 @@
+import { FormikProps } from 'formik';
 import { TextField } from '@mui/material';
 import PhotoInput from '../../photo-input/PhotoInput';
-import { FormikProps } from 'formik';
 import './FormStepThree.scss';
 
+type FormValues = {
+    adName: string;
+    animalType: string;
+    price: string;
+    free: boolean;
+    location: string;
+    petOrigin: string;
+    animalVariety: string;
+    animalAge: string;
+    ageUnit: string;
+    gender: string;
+    chip: boolean;
+    sterilization: boolean;
+    parasite: boolean;
+    vaccination: boolean;
+    passport: boolean;
+    pedigree: boolean;
+    metrics: boolean;
+    cynology: boolean;
+    additional: string;
+}
+
 type FormStepThreeProps = {
-    formik: FormikProps<any>;
+    formik: FormikProps<FormValues>;
     setImageFile: (file: File | null) => void;
 };
 
-const Step3: React.FC<FormStepThreeProps> = ({ formik, setImageFile }) => {
+const FormStepThree: React.FC<FormStepThreeProps> = ({ formik, setImageFile }) => {
     return (
         <div className="step-three-container">
             <TextField
@@ -30,4 +52,4 @@ const Step3: React.FC<FormStepThreeProps> = ({ formik, setImageFile }) => {
     );
 };
 
-export default Step3;
+export default FormStepThree;

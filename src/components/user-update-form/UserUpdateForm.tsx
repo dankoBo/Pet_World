@@ -1,13 +1,13 @@
-import { TextField } from '@mui/material';
 import { useFormik } from 'formik';
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "../../firebase";
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import MaskedInput from 'react-text-mask';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { TextField } from '@mui/material';
+import Button from '../../ui/button/Button';
+import { inputMask } from '../../app.config';
 import { userUpdateSchema } from '../../validation/userUpdateValidation';
 import { stopUpdateInfo, updateUserData } from '../../store/userUpdateSlice';
-import { inputMask } from '../../app.config';
-import Button from '../../ui/button/Button';
 import './UserUpdateForm.scss';
 
 type UserUpdateValues = {
@@ -29,7 +29,7 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
 
     const updateUserInfo = async (values: UserUpdateValues) => {
         if (userId) {
-            const userDocRef = doc(db, "users", userId);
+            const userDocRef = doc(db, 'users', userId);
 
             try {
                 await updateDoc(userDocRef, {
@@ -39,12 +39,12 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
                     email: values.email,
                     phone: values.phone,
                 });
-                console.log("User data updated successfully");
+                console.log('User data updated successfully');
             } catch (error) {
-                console.error("Error updating user data:", error);
+                console.error('Error updating user data:', error);
             }
         } else {
-            console.error("User ID is not defined");
+            console.error('User ID is not defined');
         }
     };
 
@@ -59,17 +59,17 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
         validationSchema: userUpdateSchema,
         onSubmit: async (values) => {
             await updateUserInfo(values);
-            dispatch(updateUserData(values))
+            dispatch(updateUserData(values));
             dispatch(stopUpdateInfo());
         },
     });
 
     const cancelUserUpdate = () => {
         dispatch(stopUpdateInfo());
-    }
+    };
 
     const isFormFilled = () => {
-        return Object.values(formik.values).every(value => value.trim() !== '');
+        return Object.values(formik.values).every((value) => value.trim() !== '');
     };
 
     return (
@@ -82,9 +82,7 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
                 onChange={formik.handleChange}
                 value={formik.values.firstName}
                 onBlur={formik.handleBlur}
-                error={
-                    formik.touched.firstName && Boolean(formik.errors.firstName)
-                }
+                error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                 helperText={formik.touched.firstName && formik.errors.firstName}
             />
             <TextField
@@ -95,9 +93,7 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
                 onBlur={formik.handleBlur}
-                error={
-                    formik.touched.lastName && Boolean(formik.errors.lastName)
-                }
+                error={formik.touched.lastName && Boolean(formik.errors.lastName)}
                 helperText={formik.touched.lastName && formik.errors.lastName}
             />
             <TextField
@@ -108,9 +104,7 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
                 onChange={formik.handleChange}
                 value={formik.values.location}
                 onBlur={formik.handleBlur}
-                error={
-                    formik.touched.location && Boolean(formik.errors.location)
-                }
+                error={formik.touched.location && Boolean(formik.errors.location)}
                 helperText={formik.touched.location && formik.errors.location}
             />
             <TextField

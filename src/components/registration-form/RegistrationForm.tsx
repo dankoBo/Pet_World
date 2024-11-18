@@ -1,16 +1,16 @@
-import './RegistrationForm.scss';
 import { useState } from 'react';
-import { auth } from '../../firebase';
-import { db } from '../../firebase';
+import { useFormik } from 'formik';
+import MaskedInput from 'react-text-mask';
+import { useNavigate } from 'react-router-dom';
 import { doc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { TextField, InputAdornment, IconButton } from '@mui/material';
-import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
+import { auth, db } from '../../firebase';
 import Button from '../../ui/button/Button';
-import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { inputMask } from '../../app.config';
+import { MdVisibility, MdVisibilityOff } from 'react-icons/md';
+import { TextField, InputAdornment, IconButton } from '@mui/material';
 import { registrationSchema } from '../../validation/registrationValidation';
-import MaskedInput from 'react-text-mask';
+import './RegistrationForm.scss';
 
 type RegistrationValues = {
     firstName: string;
@@ -20,7 +20,7 @@ type RegistrationValues = {
     phone: string;
     password: string;
     confirmPassword: string;
-}
+};
 
 const RegistrationForm = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -33,7 +33,7 @@ const RegistrationForm = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
             const user = userCredential.user;
 
-            await setDoc(doc(db, "users", user.uid), {
+            await setDoc(doc(db, 'users', user.uid), {
                 firstName: values.firstName,
                 lastName: values.lastName,
                 location: values.location,
@@ -62,21 +62,16 @@ const RegistrationForm = () => {
         },
     });
 
-    const handleClickShowPassword = (
-        state: (value: boolean) => void,
-        item: boolean
-    ) => {
+    const handleClickShowPassword = (state: (value: boolean) => void, item: boolean) => {
         state(!item);
     };
 
-    const handleCheckboxChange = (
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
 
     const isFormFilled = () => {
-        return Object.values(formik.values).every(value => value.trim() !== '');
+        return Object.values(formik.values).every((value) => value.trim() !== '');
     };
 
     return (
@@ -89,9 +84,7 @@ const RegistrationForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.firstName}
                 onBlur={formik.handleBlur}
-                error={
-                    formik.touched.firstName && Boolean(formik.errors.firstName)
-                }
+                error={formik.touched.firstName && Boolean(formik.errors.firstName)}
                 helperText={formik.touched.firstName && formik.errors.firstName}
             />
             <TextField
@@ -102,9 +95,7 @@ const RegistrationForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.lastName}
                 onBlur={formik.handleBlur}
-                error={
-                    formik.touched.lastName && Boolean(formik.errors.lastName)
-                }
+                error={formik.touched.lastName && Boolean(formik.errors.lastName)}
                 helperText={formik.touched.lastName && formik.errors.lastName}
             />
             <TextField
@@ -115,9 +106,7 @@ const RegistrationForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.location}
                 onBlur={formik.handleBlur}
-                error={
-                    formik.touched.location && Boolean(formik.errors.location)
-                }
+                error={formik.touched.location && Boolean(formik.errors.location)}
                 helperText={formik.touched.location && formik.errors.location}
             />
             <TextField
@@ -133,7 +122,7 @@ const RegistrationForm = () => {
                 helperText={formik.touched.email && formik.errors.email}
             />
             <MaskedInput
-                mask={['+', '3', '8', ' ', '(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
+                mask={inputMask}
                 value={formik.values.phone}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -160,9 +149,7 @@ const RegistrationForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.password}
                 onBlur={formik.handleBlur}
-                error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                }
+                error={formik.touched.password && Boolean(formik.errors.password)}
                 helperText={formik.touched.password && formik.errors.password}
                 slotProps={{
                     input: {
@@ -170,19 +157,10 @@ const RegistrationForm = () => {
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={() =>
-                                        handleClickShowPassword(
-                                            setShowPassword,
-                                            showPassword
-                                        )
-                                    }
+                                    onClick={() => handleClickShowPassword(setShowPassword, showPassword)}
                                     edge="end"
                                 >
-                                    {showPassword ? (
-                                        <MdVisibilityOff />
-                                    ) : (
-                                        <MdVisibility />
-                                    )}
+                                    {showPassword ? <MdVisibilityOff /> : <MdVisibility />}
                                 </IconButton>
                             </InputAdornment>
                         ),
@@ -198,33 +176,18 @@ const RegistrationForm = () => {
                 onChange={formik.handleChange}
                 value={formik.values.confirmPassword}
                 onBlur={formik.handleBlur}
-                error={
-                    formik.touched.confirmPassword &&
-                    Boolean(formik.errors.confirmPassword)
-                }
-                helperText={
-                    formik.touched.confirmPassword &&
-                    formik.errors.confirmPassword
-                }
+                error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+                helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
                 slotProps={{
                     input: {
                         endAdornment: (
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={() =>
-                                        handleClickShowPassword(
-                                            setShowConfirmPassword,
-                                            showConfirmPassword
-                                        )
-                                    }
+                                    onClick={() => handleClickShowPassword(setShowConfirmPassword, showConfirmPassword)}
                                     edge="end"
                                 >
-                                    {showConfirmPassword ? (
-                                        <MdVisibilityOff />
-                                    ) : (
-                                        <MdVisibility />
-                                    )}
+                                    {showConfirmPassword ? <MdVisibilityOff /> : <MdVisibility />}
                                 </IconButton>
                             </InputAdornment>
                         ),

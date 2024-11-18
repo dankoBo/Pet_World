@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import Header from './components/header/Header';
-import MainPage from './pages/main-page/MainPage';
-import RegistrationPage from './pages/registration-page/RegistrationPage';
-import LoginPage from './pages/login-page/LoginPage';
-import UserProfilePage from './pages/user-profile-page/UserProfilePage';
-import PetProfilePage from './pages/pet-profile-page/PetProfilePage';
-import AddPetPage from './pages/add-pet-page/AddPetPage';
-import AdvertisementPage from './pages/advertisement-page/AdvertisementPage';
-import Footer from './components/footer/Footer';
 import { Routes, Route } from 'react-router-dom';
 import { onAuthStateChanged, User } from 'firebase/auth';
+import Header from './components/header/Header';
+import MainPage from './pages/main-page/MainPage';
+import LoginPage from './pages/login-page/LoginPage';
+import AddPetPage from './pages/add-pet-page/AddPetPage';
+import PetProfilePage from './pages/pet-profile-page/PetProfilePage';
+import UserProfilePage from './pages/user-profile-page/UserProfilePage';
+import RegistrationPage from './pages/registration-page/RegistrationPage';
+import AdvertisementPage from './pages/advertisement-page/AdvertisementPage';
+import Footer from './components/footer/Footer';
 import { auth } from './firebase';
 
 function App() {
@@ -27,18 +27,12 @@ function App() {
             <Header />
             <main className="main">
                 <Routes>
-                    <Route path="/" element={<MainPage/>} />
+                    <Route path="/" element={<MainPage />} />
                     <Route path="/registration" element={<RegistrationPage />} />
                     <Route path="/login" element={<LoginPage />} />
-                    <Route 
-                        path="/user-profile" 
-                        element={user ? <UserProfilePage /> : <LoginPage />} 
-                    />
+                    <Route path="/user-profile" element={user ? <UserProfilePage /> : <LoginPage />} />
                     <Route path="/pet-profile/:petId" element={<PetProfilePage />} />
-                    <Route
-                        path="/add-pet"
-                        element={user ? <AddPetPage /> : <RegistrationPage />}
-                    />
+                    <Route path="/add-pet" element={user ? <AddPetPage /> : <RegistrationPage />} />
                     <Route path="/advertisement" element={<AdvertisementPage />} />
                 </Routes>
             </main>

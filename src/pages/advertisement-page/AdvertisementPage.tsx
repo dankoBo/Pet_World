@@ -1,5 +1,5 @@
-import './AdvertisementPage.scss';
 import Advertisement from '../../components/advertisement/Advertisement';
+import './AdvertisementPage.scss';
 
 const AdvertisementPage = () => {
     return (

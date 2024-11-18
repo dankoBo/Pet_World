@@ -1,13 +1,12 @@
-import './PetProfilePage.scss';
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
+import Button from '../../ui/button/Button';
+import Loader from '../../ui/loader/Loader';
 import PetDetails from '../../ui/pet-details/PetDetails';
 import HealthDocuments from '../../ui/health-documents/HealthDocuments';
-import Button from '../../ui/button/Button';
-import { useNavigate } from 'react-router-dom';
-import Loader from '../../ui/loader/Loader';
+import './PetProfilePage.scss';
 
 type PetData = {
     userId?: string;
@@ -30,12 +29,12 @@ type PetData = {
     pedigree?: boolean;
     cynology?: boolean;
     metrics?: boolean;
-}
+};
 
 type UserData = {
     firstName?: string;
     phone?: string;
-}
+};
 
 const PetProfilePage = () => {
     const { petId } = useParams();
@@ -50,19 +49,19 @@ const PetProfilePage = () => {
                 console.error('No petId provided!');
                 return;
             }
-    
+
             try {
                 const petRef = doc(db, 'animals', petId);
                 const petSnap = await getDoc(petRef);
-    
+
                 if (petSnap.exists()) {
                     const pet = petSnap.data();
                     setPetData(pet);
-    
+
                     if (pet.userId) {
                         const userRef = doc(db, 'users', pet.userId);
                         const userSnap = await getDoc(userRef);
-    
+
                         if (userSnap.exists()) {
                             setUserData(userSnap.data());
                         } else {
@@ -85,10 +84,10 @@ const PetProfilePage = () => {
         try {
             const petRef = doc(db, 'animals', petId);
             await deleteDoc(petRef);
-            console.log("Тваринка успішно видалена!");
+            console.log('Тваринка успішно видалена!');
             navigate('/user-profile');
         } catch (error) {
-            console.error("Помилка при видаленні тваринки:", error);
+            console.error('Помилка при видаленні тваринки:', error);
         }
     };
 
@@ -97,17 +96,15 @@ const PetProfilePage = () => {
     }
 
     return (
-        <div className='pet-profile-wrapper'>
+        <div className="pet-profile-wrapper">
             <div className="pet-profile app-container">
                 <div className="media">
                     <div className="media__photo">
                         <img src={petData.imageUrl} alt={petData.adName} className="media__pet-image" />
                     </div>
                     <div className="additional-info">
-                        <h2 className='additional-info__title'>Додаткова інформація</h2>
-                        <p className="additional-info__text">
-                            {petData.additional}
-                        </p>
+                        <h2 className="additional-info__title">Додаткова інформація</h2>
+                        <p className="additional-info__text">{petData.additional}</p>
                     </div>
                 </div>
                 <div className="details">
@@ -119,16 +116,8 @@ const PetProfilePage = () => {
                         <h2 className="section-title">Контакти</h2>
                         {userData ? (
                             <>
-                                <PetDetails
-                                    icon="person"
-                                    label="Контактна особа"
-                                    data={userData.firstName || ''}
-                                />
-                                <PetDetails
-                                    icon="phone"
-                                    label="Номер телефону"
-                                    data={userData.phone || ''}
-                                />
+                                <PetDetails icon="person" label="Контактна особа" data={userData.firstName || ''} />
+                                <PetDetails icon="phone" label="Номер телефону" data={userData.phone || ''} />
                             </>
                         ) : (
                             <p>Контактні дані недоступні</p>
@@ -137,36 +126,12 @@ const PetProfilePage = () => {
                     <div className="characteristics">
                         <div>
                             <h2 className="section-title">Характеристики</h2>
-                            <PetDetails
-                                icon="paw"
-                                label="Вид"
-                                data={petData.animalType || ''}
-                            />
-                            <PetDetails
-                                icon="label"
-                                label="Різновид"
-                                data={petData.animalVariety || ''}
-                            />
-                            <PetDetails
-                                icon="sex"
-                                label="Стать"
-                                data={petData.gender || ''}
-                            />
-                            <PetDetails
-                                icon="calendar"
-                                label="Вік"
-                                data={petData.animalAge || ''}
-                            />
-                            <PetDetails
-                                icon="location"
-                                label="Локація"
-                                data={petData.location || ''}
-                            />
-                            <PetDetails
-                                icon="house"
-                                label="Походження"
-                                data={petData.petOrigin || ''}
-                            />
+                            <PetDetails icon="paw" label="Вид" data={petData.animalType || ''} />
+                            <PetDetails icon="label" label="Різновид" data={petData.animalVariety || ''} />
+                            <PetDetails icon="sex" label="Стать" data={petData.gender || ''} />
+                            <PetDetails icon="calendar" label="Вік" data={petData.animalAge || ''} />
+                            <PetDetails icon="location" label="Локація" data={petData.location || ''} />
+                            <PetDetails icon="house" label="Походження" data={petData.petOrigin || ''} />
                         </div>
                         <div>
                             <HealthDocuments
@@ -192,12 +157,14 @@ const PetProfilePage = () => {
                         </div>
                     </div>
                     {userId && (
-                        <Button className='warning' onClick={handleDelete}>Видалити</Button>
+                        <Button className="warning" onClick={handleDelete}>
+                            Видалити
+                        </Button>
                     )}
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default PetProfilePage;
