@@ -5,7 +5,7 @@ import { db } from "../../firebase";
 import { useDispatch} from 'react-redux';
 import MaskedInput from 'react-text-mask';
 import { userUpdateSchema } from '../../validation/userUpdateValidation';
-import { stopUpdateInfo } from '../../store/userUpdateSlice';
+import { stopUpdateInfo, updateUserData } from '../../store/userUpdateSlice';
 import { inputMask } from '../../app.config';
 import Button from '../../ui/button/Button';
 import './UserUpdateForm.scss';
@@ -59,6 +59,7 @@ const UserUpdateForm: React.FC<UserInfoProps> = ({ userInfoData, email, userId }
         validationSchema: userUpdateSchema,
         onSubmit: async (values) => {
             await updateUserInfo(values);
+            dispatch(updateUserData(values))
             dispatch(stopUpdateInfo());
         },
     });

@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { doc, getDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import {
+    doc,
+    getDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+} from 'firebase/firestore';
 import { auth, db } from '../../firebase';
 import PetCard from '../../components/pet-card/PetCard';
 import UserProfileInfo from '../../components/user-profile-info/UserProfileInfo';
@@ -8,14 +14,8 @@ import Loader from '../../ui/loader/Loader';
 import UserUpdateForm from '../../components/user-update-form/UserUpdateForm';
 import type { RootState } from '../../store/store';
 import './UserProfilePage.scss';
-
-type UserData = {
-    firstName: string;
-    lastName: string;
-    location: string;
-    email: string;
-    phone: string;
-}
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserData } from '../../store/userUpdateSlice';
 
 type PetData = {
     id: string;
@@ -25,31 +25,36 @@ type PetData = {
     gender: string;
     animalAge: string;
     price: string;
-}
+};
 
 const UserProfilePage = () => {
-    const [userData, setUserData] = useState<UserData | null>(null);
     const [userPets, setUserPets] = useState<PetData[]>([]);
     const userId = auth.currentUser?.uid;
     const isUpdating = useSelector((state: RootState) => state.user.isUpdating);
+    const dispatch = useDispatch();
+    const userData = useSelector((state: RootState) => state.user.userInfo);
 
     useEffect(() => {
         const fetchUserData = async () => {
             if (!userId) return;
 
             try {
-                const userRef = doc(db, "users", userId);
+                const userRef = doc(db, 'users', userId);
                 const userSnap = await getDoc(userRef);
 
                 if (userSnap.exists()) {
-                    setUserData(userSnap.data() as UserData);
+                    dispatch(updateUserData(userSnap.data()));
                 } else {
-                    console.log("Користувача не знайдено!");
+                    console.log('Користувача не знайдено!');
                 }
 
-                const petsQuery = query(collection(db, 'animals'), where('userId', '==', userId));
+                const petsQuery = query(
+                    collection(db, 'animals'),
+                    where('userId', '==', userId)
+                );
+
                 const querySnapshot = await getDocs(petsQuery);
-                const animals = querySnapshot.docs.map(doc => {
+                const animals = querySnapshot.docs.map((doc) => {
                     const data = doc.data();
                     return {
                         id: doc.id,
@@ -63,12 +68,12 @@ const UserProfilePage = () => {
                 });
                 setUserPets(animals);
             } catch (error) {
-                console.error("Помилка при отриманні даних:", error);
+                console.error('Помилка при отриманні даних:', error);
             }
         };
 
         fetchUserData();
-    }, [userId]);
+    }, [userId, dispatch]);
 
     return (
         <div className="user-profile-wrapper">
@@ -76,23 +81,29 @@ const UserProfilePage = () => {
                 {userData ? (
                     <>
                         {!isUpdating ? (
-                            <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} />
+                            <UserProfileInfo
+                                userData={userData}
+                                email={auth.currentUser?.email || null}
+                            />
                         ) : (
-                            <UserUpdateForm userInfoData={userData} email={auth.currentUser?.email || null} userId={userId || null} />
+                            <UserUpdateForm
+                                userInfoData={{
+                                    ...userData,
+                                    email: auth.currentUser?.email || '',
+                                }}
+                                email={auth.currentUser?.email || null}
+                                userId={userId || null}
+                            />
                         )}
-                        {/* <UserProfileInfo userData={userData} email={auth.currentUser?.email || null} />
-                        <UserUpdateForm userInfoData={userData} email={auth.currentUser?.email || null} userId={userId || null} /> */}
                     </>
                 ) : (
                     <Loader />
                 )}
                 <div className="user-pets">
                     <div className="user-pets__name">
-                        <h2 className="user-pets__title">
-                            Оголошення
-                        </h2>
+                        <h2 className="user-pets__title">Оголошення</h2>
                     </div>
-                    <div className='user-pets__cards'>
+                    <div className="user-pets__cards">
                         {userPets.length > 0 ? (
                             userPets.map((pet) => (
                                 <PetCard
