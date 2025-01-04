@@ -19,7 +19,7 @@ const Header = () => {
                                 </li>
                                 <li>
                                     <Link to="/advertisement" className="nav-header__link-ads">
-                                        Оголошення:
+                                        Оголошення
                                     </Link>
                                 </li>
                             </ul>
